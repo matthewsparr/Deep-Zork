@@ -1,0 +1,181 @@
+Story file is cavern.z5
+
+    **** Parse tables ****
+
+  Verb entries = 18
+
+255. 1 entry, verb = "n"
+    [00 5e 0f]                "n"
+
+254. 1 entry, verb = "1"
+    [00 5f 0f]                "1"
+
+253. 1 entry, verb = "2"
+    [00 60 0f]                "2"
+
+252. 1 entry, verb = "3"
+    [00 61 0f]                "3"
+
+251. 1 entry, verb = "4"
+    [00 62 0f]                "4"
+
+250. 1 entry, verb = "carry", synonyms = "get", "hold", "pick", "remove",
+                                         "stand", "take"
+    [00 63 0f]                "carry"
+
+249. 1 entry, verb = "discard", synonyms = "drop", "give", "pay", "put",
+                                           "throw", "wear"
+    [00 63 0f]                "discard"
+
+248. 1 entry, verb = "feed", synonyms = "go", "inv", "inventory", "leave",
+                                        "offer", "show"
+    [00 63 0f]                "feed"
+
+247. 1 entry, verb = "close", synonyms = "cross", "enter", "i", "lie", "open",
+                                         "sit"
+    [00 63 0f]                "close"
+
+246. 1 entry, verb = "ask", synonyms = "eat", "examine", "sing", "sleep",
+                                       "watch", "x"
+    [00 63 0f]                "ask"
+
+245. 1 entry, verb = "buy", synonyms = "climb", "drink", "jump", "light", "run"
+    [00 63 0f]                "buy"
+
+244. 1 entry, verb = "d", synonyms = "e", "ne", "nw", "s", "se", "sw", "u", "w"
+    [00 63 0f]                "d"
+
+243. 1 entry, verb = "l", synonyms = "look", "read"
+    [00 1f 0f]                "l"
+
+242. 1 entry, verb = "restore"
+    [00 03 0f]                "restore"
+
+241. 1 entry, verb = "restart"
+    [00 02 0f]                "restart"
+
+240. 1 entry, verb = "save"
+    [00 04 0f]                "save"
+
+239. 1 entry, verb = "script", synonyms = "transcrip"
+    [00 06 0f]                "script"
+
+238. 1 entry, verb = "noscript", synonyms = "unscript"
+    [00 07 0f]                "noscript"
+
+    **** Verb action routines ****
+
+  Action table entries = 100
+
+action# action-routine "verb..."
+
+  0.  9708  
+  1.  d660  
+  2.  d670  "restart"
+  3.  d688  "restore"
+  4.  d6a0  "save"
+  5.  d6d0  
+  6.  d6e8  "script"
+  7.  d728  "noscript"
+  8.  d764  
+  9.  d770  
+ 10.  b7f4  
+ 11.  b7fc  
+ 12.  d930  
+ 13.  d9d8  
+ 14.  da84  
+ 15.  e170  
+ 16.  e264  
+ 17.  e1b0  
+ 18.  e360  
+ 19.  e4dc  
+ 20.  e6e0  
+ 21.  e8d8  
+ 22.  e934  
+ 23.  e98c  
+ 24.  ec14  
+ 25.  ec48  
+ 26.  ed4c  
+ 27.  ed5c  
+ 28.  f438  
+ 29.  f448  
+ 30.  f458  
+ 31.  f5a4  "l"
+ 32.  f7e4  
+ 33.  f888  
+ 34.  f89c  
+ 35.  fa08  
+ 36.  fa9c  
+ 37.  fb50  
+ 38.  fbb8  
+ 39.  fc20  
+ 40.  fd0c  
+ 41.  fd74  
+ 42.  fdbc  
+ 43.  fe50  
+ 44.  fee8  
+ 45.  fef0  
+ 46.  fef8  
+ 47.  ff04  
+ 48.  ff10  
+ 49.  ff1c  
+ 50. 103e0  
+ 51.  ff3c  
+ 52.  ff48  
+ 53.  ff54  
+ 54.  ff60  
+ 55. 10074  
+ 56.  ff6c  
+ 57.  ff78  
+ 58.  ff84  
+ 59.  ff90  
+ 60.  ff9c  
+ 61.  ffa8  
+ 62.  ffb4  
+ 63.  ffc0  
+ 64.  ffcc  
+ 65.  ffd8  
+ 66. 103ac  
+ 67.  ffe4  
+ 68.  fff0  
+ 69.  fffc  
+ 70. 10008  
+ 71. 10014  
+ 72. 10020  
+ 73. 1002c  
+ 74. 100b4  
+ 75. 100ec  
+ 76. 10160  
+ 77. 101d4  
+ 78. 1025c  
+ 79. 102cc  
+ 80. 10300  
+ 81. 10424  
+ 82. 1040c  
+ 83. 10444  
+ 84. 10038  
+ 85. 10044  
+ 86. 10050  
+ 87. 10248  
+ 88. 1005c  
+ 89. 10068  
+ 90. 10458  
+ 91.  e928  
+ 92.  e980  
+ 93.  e684  
+ 94. 112b8  "n"
+ 95. 112ec  "1"
+ 96. 11320  "2"
+ 97. 11354  "3"
+ 98. 11388  "4"
+ 99. 113bc  "carry"
+            "discard"
+            "feed"
+            "close"
+            "ask"
+            "buy"
+            "d"
+
+    **** Prepositions ****
+
+  Table entries = 0

@@ -1,0 +1,674 @@
+Story file is kirby.z5
+
+    **** Parse tables ****
+
+  Verb entries = 96
+
+255. 1 entry, verb =  no-verb
+    [00 0c]                   "no-verb"
+
+254. 2 entries, verb =  no-verb
+    [00 0d]                   "no-verb"
+    [0f 00]                   "no-verb "
+
+253. 1 entry, verb =  no-verb
+    [00 01]                   "no-verb"
+
+252. 1 entry, verb =  no-verb
+    [00 03]                   "no-verb"
+
+251. 1 entry, verb =  no-verb
+    [00 02]                   "no-verb"
+
+250. 1 entry, verb =  no-verb
+    [00 05]                   "no-verb"
+
+249. 1 entry, verb =  no-verb
+    [00 04]                   "no-verb"
+
+248. 3 entries, verb =  no-verb
+    [00 06]                   "no-verb"
+    [0f 00]                   "no-verb "
+    [07 42]                   "no-verb "
+
+247. 1 entry, verb =  no-verb
+    [00 07]                   "no-verb"
+
+246. 1 entry, verb =  no-verb
+    [00 1e]                   "no-verb"
+
+245. 1 entry, verb =  no-verb
+    [00 1d]                   "no-verb"
+
+244. 1 entry, verb =  no-verb
+    [00 1c]                   "no-verb"
+
+243. 1 entry, verb =  no-verb
+    [00 00]                   "no-verb"
+
+242. 2 entries, verb =  no-verb
+    [00 08]                   "no-verb"
+    [42 57 d2 0f]             "no-verb  OBJ"
+
+241. 1 entry, verb =  no-verb
+    [00 5e]                   "no-verb"
+
+240. 1 entry, verb =  no-verb
+    [00 0a]                   "no-verb"
+
+239. 1 entry, verb =  no-verb
+    [00 0b]                   "no-verb"
+
+238. 5 entries, verb = "carry", synonyms = "hold", "take"
+    [00 0f]                   "carry"
+    [01 00]                   "carry "
+    [02 0f]                   "carry "
+    [00 29]                   "carry"
+    [42 57 b7 04]             "carry  OBJ"
+
+237. 5 entries, verb = "get"
+    [00 19]                   "get"
+    [62 58 23 72]             "get  OBJ"
+    [57 b7 52 61]             "get  OBJ"
+    [74 0f 00 0f]             "get  OBJ"
+    [01 00]                   "get "
+
+236. 2 entries, verb = "pick"
+    [00 0f]                   "pick"
+    [42 61 74 01]             "pick  OBJ"
+
+235. 3 entries, verb = "stand"
+    [00 19]                   "stand"
+    [0f 00]                   "stand "
+    [19 42]                   "stand "
+
+234. 3 entries, verb = "remove"
+    [00 29]                   "remove"
+    [01 00]                   "remove "
+    [01 0f]                   "remove "
+
+233. 1 entry, verb = "disrobe", synonyms = "doff", "shed"
+    [00 29]                   "disrobe"
+
+232. 1 entry, verb = "don", synonyms = "wear"
+    [00 2a]                   "don"
+
+231. 5 entries, verb = "put"
+    [00 13]                   "put"
+    [01 00]                   "put "
+    [04 62]                   "put "
+    [53 64 72 53]             "put  OBJ"
+    [ac 52 53 be 01 00 00]    "put  OBJ  OBJ"
+
+230. 1 entry, verb = "insert"
+    [00 13]                   "insert"
+
+229. 4 entries, verb = "empty"
+    [00 5f]                   "empty"
+    [01 00]                   "empty "
+    [00 0f]                   "empty"
+    [00 5f]                   "empty"
+
+228. 1 entry, verb = "transfer"
+    [00 5d]                   "transfer"
+
+227. 4 entries, verb = "discard", synonyms = "drop", "throw"
+    [00 10]                   "discard"
+    [01 00]                   "discard "
+    [03 0f]                   "discard "
+    [00 13]                   "discard"
+
+226. 3 entries, verb = "feed", synonyms = "give", "offer", "pay"
+    [00 15]                   "feed"
+    [01 00]                   "feed "
+    [01 42]                   "feed "
+
+225. 2 entries, verb = "display", synonyms = "present", "show"
+    [04 16]                   "display "
+    [01 00]                   "display "
+
+224. 4 entries, verb = "go", synonyms = "run", "walk"
+    [00 1a]                   "go"
+    [0f 00]                   "go "
+    [1b 83]                   "go "
+    [38 2c]                   "go "
+
+223. 4 entries, verb = "leave"
+    [00 1a]                   "leave"
+    [0f 00]                   "leave "
+    [1b 83]                   "leave "
+    [38 2c]                   "leave "
+
+222. 3 entries, verb = "i", synonyms = "inv", "inventory"
+    [00 0e]                   "i"
+    [0f 00]                   "i "
+    [60 42 5f 6a]             "i  OBJ"
+
+221. 7 entries, verb = "l", synonyms = "look"
+    [00 1f]                   "l"
+    [0f 04]                   "l "
+    [59 42 61 74]             "l  OBJ"
+    [85 39 2f 42 53 64 01]    "l  OBJ  OBJ"
+    [00 00]                   "l"
+    [0f 00]                   "l "
+    [1f 0f]                   "l "
+
+220. 3 entries, verb = "consult"
+    [00 59]                   "consult"
+    [01 00]                   "consult "
+    [00 42]                   "consult"
+
+219. 2 entries, verb = "open", synonyms = "uncover", "undo", "unwrap"
+    [00 27]                   "open"
+    [01 00]                   "open "
+
+218. 3 entries, verb = "close", synonyms = "cover", "shut"
+    [00 28]                   "close"
+    [01 00]                   "close "
+    [00 0f]                   "close"
+
+217. 2 entries, verb = "cross", synonyms = "enter"
+    [00 62]                   "cross"
+    [0f 00]                   "cross "
+
+216. 2 entries, verb = "lie", synonyms = "sit"
+    [00 17]                   "lie"
+    [42 57 d2 42]             "lie  OBJ"
+
+215. 1 entry, verb = "in", synonyms = "inside"
+    [00 62]                   "in"
+
+214. 1 entry, verb = "exit", synonyms = "out", "outside"
+    [00 19]                   "exit"
+
+213. 1 entry, verb = "check", synonyms = "describe", "examine", "watch", "x"
+    [00 20]                   "check"
+
+212. 3 entries, verb = "read"
+    [00 20]                   "read"
+    [01 00]                   "read "
+    [00 0f]                   "read"
+
+211. 1 entry, verb = "y", synonyms = "yes"
+    [00 2c]                   "y"
+
+210. 1 entry, verb = "no"
+    [00 2d]                   "no"
+
+209. 1 entry, verb = "sorry"
+    [00 3f]                   "sorry"
+
+208. 2 entries, verb = "damn", synonyms = "fuck", "shit", "sod"
+    [00 40]                   "damn"
+    [0f 00]                   "damn "
+
+207. 2 entries, verb = "bother", synonyms = "curses", "darn", "drat"
+    [00 41]                   "bother"
+    [0f 00]                   "bother "
+
+206. 1 entry, verb = "search"
+    [00 22]                   "search"
+
+205. 2 entries, verb = "wave"
+    [00 49]                   "wave"
+    [0f 00]                   "wave "
+
+204. 2 entries, verb = "adjust", synonyms = "set"
+    [00 47]                   "adjust"
+    [01 00]                   "adjust "
+
+203. 1 entry, verb = "drag", synonyms = "pull"
+    [00 4b]                   "drag"
+
+202. 3 entries, verb = "clear", synonyms = "move", "press", "push", "shift"
+    [00 4c]                   "clear"
+    [01 00]                   "clear "
+    [00 0f]                   "clear"
+
+201. 6 entries, verb = "rotate", synonyms = "screw", "turn", "twist", "unscrew"
+    [00 4d]                   "rotate"
+    [01 00]                   "rotate "
+    [00 0f]                   "rotate"
+    [00 25]                   "rotate"
+    [01 00]                   "rotate "
+    [00 42]                   "rotate"
+
+200. 5 entries, verb = "flip", synonyms = "switch"
+    [00 25]                   "flip"
+    [01 00]                   "flip "
+    [00 0f]                   "flip"
+    [00 25]                   "flip"
+    [01 00]                   "flip "
+
+199. 1 entry, verb = "lock"
+    [00 24]                   "lock"
+
+198. 1 entry, verb = "unlock"
+    [00 23]                   "unlock"
+
+197. 2 entries, verb = "attack", synonyms = "break", "crack", "destroy",
+                                            "fight", "hit", "kill", "murder",
+                                            "punch", "smash", "thump",
+                                            "torture", "wreck"
+    [00 42]                   "attack"
+    [01 00]                   "attack "
+
+196. 1 entry, verb = "wait", synonyms = "z"
+    [00 57]                   "wait"
+
+195. 1 entry, verb = "say", synonyms = "shout", "speak"
+    [00 52]                   "say"
+
+194. 2 entries, verb = "tell"
+    [00 51]                   "tell"
+    [01 00]                   "tell "
+
+193. 3 entries, verb = "ask"
+    [00 53]                   "ask"
+    [01 00]                   "ask "
+    [06 42]                   "ask "
+
+192. 1 entry, verb = "eat"
+    [00 2b]                   "eat"
+
+191. 1 entry, verb = "nap", synonyms = "sleep"
+    [00 58]                   "nap"
+
+190. 2 entries, verb = "peel"
+    [00 0f]                   "peel"
+    [01 00]                   "peel "
+
+189. 1 entry, verb = "sing"
+    [00 55]                   "sing"
+
+188. 2 entries, verb = "climb", synonyms = "scale"
+    [00 56]                   "climb"
+    [01 00]                   "climb "
+
+187. 1 entry, verb = "buy", synonyms = "purchase"
+    [00 54]                   "buy"
+
+186. 1 entry, verb = "squash", synonyms = "squeeze"
+    [00 4f]                   "squash"
+
+185. 1 entry, verb = "dive", synonyms = "swim"
+    [00 43]                   "dive"
+
+184. 2 entries, verb = "swing"
+    [00 44]                   "swing"
+    [01 00]                   "swing "
+
+183. 1 entry, verb = "blow"
+    [00 45]                   "blow"
+
+182. 1 entry, verb = "pray"
+    [00 2f]                   "pray"
+
+181. 5 entries, verb = "awake", synonyms = "awaken", "wake"
+    [00 30]                   "awake"
+    [0f 00]                   "awake "
+    [30 42]                   "awake "
+    [61 74 0f 00]             "awake  OBJ"
+    [31 01]                   "awake "
+
+180. 1 entry, verb = "embrace", synonyms = "hug", "kiss"
+    [00 32]                   "embrace"
+
+179. 1 entry, verb = "think"
+    [00 33]                   "think"
+
+178. 2 entries, verb = "smell", synonyms = "sniff"
+    [00 34]                   "smell"
+    [0f 00]                   "smell "
+
+177. 3 entries, verb = "hear", synonyms = "listen"
+    [00 35]                   "hear"
+    [0f 00]                   "hear "
+    [35 01]                   "hear "
+
+176. 1 entry, verb = "taste"
+    [00 36]                   "taste"
+
+175. 1 entry, verb = "feel", synonyms = "fondle", "grope", "touch"
+    [00 37]                   "feel"
+
+174. 1 entry, verb = "clean", synonyms = "dust", "polish", "rub", "scrub",
+                                         "shine", "sweep", "wipe"
+    [00 46]                   "clean"
+
+173. 2 entries, verb = "attach", synonyms = "fasten", "fix", "tie"
+    [00 3c]                   "attach"
+    [01 00]                   "attach "
+
+172. 2 entries, verb = "burn", synonyms = "light"
+    [00 2e]                   "burn"
+    [01 00]                   "burn "
+
+171. 1 entry, verb = "drink", synonyms = "sip", "swallow"
+    [00 3d]                   "drink"
+
+170. 1 entry, verb = "fill"
+    [00 3e]                   "fill"
+
+169. 1 entry, verb = "chop", synonyms = "cut", "prune", "slice"
+    [00 39]                   "chop"
+
+168. 2 entries, verb = "hop", synonyms = "jump", "skip"
+    [00 3a]                   "hop"
+    [0f 00]                   "hop "
+
+167. 2 entries, verb = "dig"
+    [00 38]                   "dig"
+    [01 00]                   "dig "
+
+166. 1 entry, verb = "cry", synonyms = "scream", "yell"
+    [00 63]                   "cry"
+
+165. 2 entries, verb = "call", synonyms = "phone", "telephone"
+    [00 64]                   "call"
+    [85 39 23 0f 00 64 01]    "call  OBJ OBJ"
+
+164. 1 entry, verb = "hang"
+    [00 26]                   "hang"
+
+163. 1 entry, verb = "disconnec"
+    [00 26]                   "disconnec"
+
+162. 1 entry, verb = "play"
+    [00 65]                   "play"
+
+161. 1 entry, verb = "inject"
+    [00 66]                   "inject"
+
+160. 2 entries, verb = "answer"
+    [00 67]                   "answer"
+    [83 39 42 0f 00 52 01]    "answer  OBJ OBJ"
+
+    **** Verb action routines ****
+
+  Action table entries = 184
+
+action# pre-action-routine action-routine "verb..."
+
+  0.    68  2508  "no-verb "
+                  "no-verb "
+                  "no-verb"
+                  "carry "
+                  "get "
+                  "stand "
+                  "remove "
+                  "put "
+                  "empty "
+                  "discard "
+                  "feed "
+                  "display "
+                  "go "
+                  "leave "
+                  "i "
+                  "l"
+                  "l "
+                  "consult "
+                  "open "
+                  "close "
+                  "cross "
+                  "read "
+                  "damn "
+                  "bother "
+                  "wave "
+                  "adjust "
+                  "clear "
+                  "rotate "
+                  "rotate "
+                  "flip "
+                  "flip "
+                  "attack "
+                  "tell "
+                  "ask "
+                  "peel "
+                  "climb "
+                  "swing "
+                  "awake "
+                  "smell "
+                  "hear "
+                  "attach "
+                  "burn "
+                  "hop "
+                  "dig "
+  1. 19450 181bc  "no-verb"
+                  "awake "
+                  "hear "
+  2. 29650   400  "no-verb"
+  3. 29600  183c  "no-verb"
+  4.     0  a960  "no-verb"
+                  "l "
+  5.  69a0  c7ec  "no-verb"
+  6.  e54c  c7fc  "no-verb"
+  7. 39294  c814  "no-verb"
+  8. 20000  c82c  "no-verb"
+  9.    68  c85c  
+ 10. 1a450  c874  "no-verb"
+ 11. 29650  c8ac  "no-verb"
+ 12. 29600  c8e4  "no-verb"
+ 13.     0  c8f0  "no-verb"
+ 14.  69d0  b7dc  "i"
+ 15. 196a8  b7e4  "carry"
+                  "carry "
+                  "get  OBJ"
+                  "pick"
+                  "remove "
+                  "empty"
+                  "discard "
+                  "l "
+                  "close"
+                  "read"
+                  "clear"
+                  "rotate"
+                  "flip"
+                  "peel"
+ 16. 37294  c9e8  "discard"
+ 17. 20000  ca48  
+ 18.    68  cac4  
+ 19. 1e1c4  cdbc  "put"
+                  "insert"
+                  "discard"
+ 20. 15e50  ce44  
+ 21. 29504  cde8  "feed"
+ 22. 28000  cea4  "display "
+ 23.  6bdc  cf98  "lie"
+ 24. 14e14  d0c8  
+ 25. 25294  d1a8  "get"
+                  "stand"
+                  "exit"
+ 26. 20000  d1e4  "go"
+                  "leave"
+ 27.    68  d220  
+ 28. 3e4e4  d304  "no-verb"
+ 29. 1ba84  d31c  "no-verb"
+ 30. 31a00  d388  "no-verb"
+ 31.     0  d398  "l"
+ 32.  6c40  d6a0  "check"
+                  "read"
+ 33.  5294  d6b0  
+ 34. 25294  d6c0  "search"
+ 35. 10704  d734  "unlock"
+ 36.    6c  d86c  "lock"
+ 37.  606c  d8c0  "rotate"
+                  "flip"
+                  "flip"
+ 38.  62e8  d8d4  "hang"
+                  "disconnec"
+ 39. 19600  d970  "open"
+ 40.     0  d9c0  "close"
+ 41.  6c94  da20  "carry"
+                  "remove"
+                  "disrobe"
+ 42.  5294  da5c  "don"
+ 43. 25294  da98  "eat"
+ 44.  2000  db04  "go "
+                  "leave "
+                  "y"
+ 45.    6c  db40  "no"
+ 46.  e464  db70  "burn"
+ 47.  3650  dbbc  "pray"
+ 48. 29504  dc04  "awake"
+ 49. 2b400  dc0c  
+ 50.  6ce4  dc14  "embrace"
+ 51.  6440  dc20  "think"
+ 52. 25294  dc2c  "smell"
+ 53. 10714  dc38  "hear"
+ 54.    6c  df90  "taste"
+ 55. 21904  dc58  "feel"
+ 56. 11650  dc64  "dig"
+ 57. 29504  dc70  "l  OBJ  OBJ"
+                  "chop"
+                  "call  OBJ OBJ"
+                  "answer  OBJ OBJ"
+ 58. 2d400  dc7c  "hop"
+ 59.  6e18  dd90  
+ 60. 1054c  dc88  "attach"
+ 61. 25294  dc94  "drink"
+ 62. 106d4  dca0  "fill"
+ 63.    70  dcac  "sorry"
+ 64. 34510  dcb8  "damn"
+ 65. 29650  dcc4  "bother"
+ 66. 29600  dcd0  "no-verb "
+                  "stand "
+                  "feed "
+                  "i  OBJ"
+                  "l  OBJ"
+                  "consult"
+                  "rotate"
+                  "attack"
+                  "ask "
+                  "awake "
+ 67.     0  dcdc  "dive"
+ 68.  735c  dce8  "swing"
+ 69.  5294  dcf4  "blow"
+ 70. 25294  df6c  "clean"
+ 71. 20000  dd00  "adjust"
+ 72.    74  dd0c  
+ 73. 11920  dd18  "wave"
+ 74. 29650  dd24  
+ 75. 29600  dd30  "drag"
+ 76.     0  dd3c  "clear"
+ 77.  7524  dd48  "rotate"
+ 78.  5294  ddc0  
+ 79. 25294  dddc  "squash"
+ 80. 20000  de18  
+ 81.    74  de54  "tell"
+ 82. 12970  dea4  "put  OBJ  OBJ"
+                  "say"
+ 83. 29650  def0  "ask"
+ 84. 29600  df10  "buy"
+ 85.     0  dfbc  "sing"
+ 86.  7528  e548  "climb"
+ 87. 196d0  dfdc  "no-verb  OBJ"
+                  "carry  OBJ"
+                  "lie  OBJ"
+                  "wait"
+ 88. 3b54c  dd54  "get  OBJ"
+                  "nap"
+ 89. 20000  dd60  "consult"
+ 90.    74  dd6c  
+ 91. 14c84  de90  
+ 92. 29650  dd78  
+ 93. 29600  dd84  "transfer"
+ 94.     0  dff0  "no-verb"
+ 95.  7730  d1d8  "empty"
+                  "empty"
+ 96.  5294  d214  
+ 97. 25294  d090  "pick  OBJ"
+ 98. 20000  b870  "put "
+                  "cross"
+                  "in"
+ 99.    74  d0c0  "cry"
+100. 34c94  cab8  "put  OBJ"
+                  "call"
+101. 34ecc  caac  "play"
+102.  1600  d390  "inject"
+103.     0  e510  "answer"
+104.  7898  e518  
+105.  8814  e520  
+106. 25294  e528  
+107. 20000  e540  
+108.    78     0  
+109.  9894   cb8  
+110. 11650  b088  
+111. 29600  2408  
+112.     0 35458  
+113.  78d0 11450  
+114. 14494 29650  
+115. 25294 29600  
+116. 20000     0  "awake  OBJ"
+117.    78  5994  
+118.  d1c0  5294  
+119. 29650 25294  
+120. 29504 20000  
+121. 2dc00    60  
+122.  7a24 29450  
+123. 1e294 29650  
+124. 25294 29600  
+125. 20000     0  
+126.    78  6398  
+127. 24870  c338  
+128. 29650 31294  
+129. 29600 20000  
+130.     0    60  
+131.  7a4c 3a5a4  "go "
+                  "leave "
+132.  9294  66a4  
+133. 25294 11600  
+134. 20000     0  
+135.    78  63a4  
+136. 24c9c 1a464  
+137.  1650 2ea4c  
+138. 29600 20000  
+139.     0    60  
+140.  7a50 3d1ac  
+141. 10294  9650  
+142. 25294 29420  
+143. 20000     0  
+144.    78  64bc  
+145. 25104 1ac64  
+146.  1b84 25294  
+147. 11600 10730  
+148.     0    64  
+149.  7a50 218e8  
+150. 10c14 19650  
+151. 25294 29600  
+152. 20000     0  
+153.    78  6618  
+154. 2510c  e9e0  
+155.  36a8 39294  
+156.  ae00  2000  
+157.     0    68  
+158.  7a50  9930  
+159. 10c34 29650  
+160. 2a8ec 29600  
+161. 20000     0  
+162.    78  68b8  
+163. 25194  a994  
+164. 29650 25294  
+165. 29600 20000  
+166.     0    68  
+167.  7a50  b8a8  
+168. 196e0 1e250  
+169. 25294 29600  
+170. 20000     0  
+171.    78  68c4  
+172. 264d0  5294  
+173. 29650 25294  
+174. 29600 20000  
+175.     0    68  
+176.  7a64  e928  
+177.  d55c 1ba50  
+178. 25294 29600  
+179. 1073c     0  
+180.    78  6968  
+181. 26598 1874c  
+182.  aa50 2c294  
+183. 29600 20000  "get  OBJ"
+
+    **** Prepositions ****
+
+  Table entries = 0

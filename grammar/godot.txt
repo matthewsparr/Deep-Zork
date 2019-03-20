@@ -1,0 +1,665 @@
+Story file is godot.z5
+
+    **** Parse tables ****
+
+  Verb entries = 100
+
+255. 1 entry, verb = "score"
+    [00 00 00 00 00 00 00 00] "score"
+
+254. 2 entries, verb =  no-verb
+    [00 00 00 00 00 00 00 01] "no-verb"
+    [00 ff 00 00 00 00 00 01] "no-verb score"
+
+253. 1 entry, verb =  no-verb
+    [00 00 00 00 00 00 00 02] "no-verb"
+
+252. 1 entry, verb =  no-verb
+    [00 00 00 00 00 00 00 03] "no-verb"
+
+251. 1 entry, verb =  no-verb
+    [00 00 00 00 00 00 00 04] "no-verb"
+
+250. 1 entry, verb =  no-verb
+    [00 00 00 00 00 00 00 05] "no-verb"
+
+249. 1 entry, verb =  no-verb
+    [00 00 00 00 00 00 00 06] "no-verb"
+
+248. 3 entries, verb =  no-verb
+    [00 00 00 00 00 00 00 07] "no-verb"
+    [00 fe 00 00 00 00 00 08] "no-verb off"
+    [00 fd 00 00 00 00 00 07] "no-verb on"
+
+247. 1 entry, verb =  no-verb
+    [00 00 00 00 00 00 00 08] "no-verb"
+
+246. 1 entry, verb =  no-verb
+    [00 00 00 00 00 00 00 09] "no-verb"
+
+245. 1 entry, verb =  no-verb
+    [00 00 00 00 00 00 00 0a] "no-verb"
+
+244. 1 entry, verb =  no-verb
+    [00 00 00 00 00 00 00 0b] "no-verb"
+
+243. 1 entry, verb =  no-verb
+    [00 00 00 00 00 00 00 0c] "no-verb"
+
+242. 2 entries, verb =  no-verb
+    [00 fd 00 00 00 00 00 0d] "no-verb on"
+    [00 fe 00 00 00 00 00 0e] "no-verb off"
+
+241. 1 entry, verb =  no-verb
+    [00 00 00 00 00 00 00 0f] "no-verb"
+
+240. 1 entry, verb =  no-verb
+    [00 00 00 00 00 00 00 10] "no-verb"
+
+239. 1 entry, verb =  no-verb
+    [00 00 00 00 00 00 00 11] "no-verb"
+
+238. 4 entries, verb =  no-verb
+    [00 00 00 00 00 00 00 12] "no-verb"
+    [01 08 00 00 00 00 00 13] "no-verb OBJ"
+    [00 fd 00 00 00 00 00 12] "no-verb on"
+    [00 fe 00 00 00 00 00 14] "no-verb off"
+
+237. 3 entries, verb =  no-verb
+    [00 00 00 00 00 00 00 15] "no-verb"
+    [00 fd 00 00 00 00 00 15] "no-verb on"
+    [00 fe 00 00 00 00 00 16] "no-verb off"
+
+236. 3 entries, verb =  no-verb
+    [00 00 00 00 00 00 00 17] "no-verb"
+    [00 fd 00 00 00 00 00 17] "no-verb on"
+    [00 fe 00 00 00 00 00 18] "no-verb off"
+
+235. 3 entries, verb =  no-verb
+    [00 00 00 00 00 00 00 19] "no-verb"
+    [00 fd 00 00 00 00 00 19] "no-verb on"
+    [00 fe 00 00 00 00 00 1a] "no-verb off"
+
+234. 3 entries, verb =  no-verb
+    [00 00 00 00 00 00 00 1b] "no-verb"
+    [00 fd 00 00 00 00 00 1b] "no-verb on"
+    [00 fe 00 00 00 00 00 1c] "no-verb off"
+
+233. 1 entry, verb =  no-verb
+    [00 00 00 00 00 00 00 1d] "no-verb"
+
+232. 1 entry, verb =  no-verb
+    [00 00 00 00 00 00 00 1e] "no-verb"
+
+231. 1 entry, verb =  no-verb
+    [01 02 00 00 00 00 00 1f] "no-verb OBJ"
+
+230. 1 entry, verb =  no-verb
+    [02 00 fc 00 00 00 00 20] "no-verb OBJ to OBJ"
+
+229. 2 entries, verb =  no-verb
+    [00 00 00 00 00 00 00 21] "no-verb"
+    [01 00 00 00 00 00 00 21] "no-verb OBJ"
+
+228. 1 entry, verb =  no-verb
+    [01 08 00 00 00 00 00 22] "no-verb OBJ"
+
+227. 1 entry, verb =  no-verb
+    [01 00 00 00 00 00 00 23] "no-verb OBJ"
+
+226. 2 entries, verb =  no-verb
+    [00 00 00 00 00 00 00 24] "no-verb"
+    [01 00 00 00 00 00 00 24] "no-verb OBJ"
+
+225. 12 entries, verb = "carry", synonyms = "get", "hold", "take"
+    [00 fb 00 00 00 00 00 25] "carry out"
+    [00 fe 00 00 00 00 00 25] "carry off"
+    [00 fa 00 00 00 00 00 25] "carry up"
+    [01 02 00 00 00 00 00 26] "carry OBJ"
+    [02 05 f9 00 00 00 00 27] "carry OBJ from OBJ"
+    [01 f8 00 00 00 00 00 28] "carry in OBJ"
+    [01 f7 00 00 00 00 00 28] "carry into OBJ"
+    [01 fd 00 00 00 00 00 28] "carry on OBJ"
+    [02 05 fe 00 00 00 00 27] "carry OBJ off OBJ"
+    [01 fe 9a 00 00 00 00 29] "carry off OBJ "
+    [01 fe 00 00 00 00 00 2a] "carry off OBJ"
+    [00 f6 00 00 00 00 00 2b] "carry inventory"
+
+224. 2 entries, verb = "pick"
+    [01 fa 02 00 00 00 00 26] "pick up OBJ"
+    [01 02 fa 00 00 00 00 26] "pick OBJ up"
+
+223. 3 entries, verb = "stand"
+    [00 00 00 00 00 00 00 25] "stand"
+    [00 fa 00 00 00 00 00 25] "stand up"
+    [01 fd 00 00 00 00 00 28] "stand on OBJ"
+
+222. 3 entries, verb = "remove"
+    [01 01 00 00 00 00 00 29] "remove OBJ"
+    [01 02 00 00 00 00 00 26] "remove OBJ"
+    [02 05 f9 00 00 00 00 27] "remove OBJ from OBJ"
+
+221. 1 entry, verb = "disrobe", synonyms = "doff", "shed"
+    [01 01 00 00 00 00 00 29] "disrobe OBJ"
+
+220. 1 entry, verb = "don", synonyms = "wear"
+    [01 01 00 00 00 00 00 2c] "don OBJ"
+
+219. 8 entries, verb = "put"
+    [02 04 f8 00 00 00 00 2d] "put OBJ in OBJ"
+    [02 04 f5 00 00 00 00 2d] "put OBJ inside OBJ"
+    [02 04 f7 00 00 00 00 2d] "put OBJ into OBJ"
+    [02 04 fd 00 00 00 00 2e] "put OBJ on OBJ"
+    [02 04 f4 00 00 00 00 2e] "put OBJ onto OBJ"
+    [01 fd 01 00 00 00 00 2c] "put on OBJ"
+    [01 f3 03 00 00 00 00 2f] "put down OBJ"
+    [01 03 f3 00 00 00 00 2f] "put OBJ down"
+
+218. 2 entries, verb = "insert"
+    [02 04 f8 00 00 00 00 2d] "insert OBJ in OBJ"
+    [02 04 f7 00 00 00 00 2d] "insert OBJ into OBJ"
+
+217. 7 entries, verb = "empty"
+    [01 00 00 00 00 00 00 30] "empty OBJ"
+    [01 fb 00 00 00 00 00 30] "empty out OBJ"
+    [01 00 fb 00 00 00 00 30] "empty OBJ out"
+    [02 00 fc 00 00 00 00 31] "empty OBJ to OBJ"
+    [02 00 f7 00 00 00 00 31] "empty OBJ into OBJ"
+    [02 00 fd 00 00 00 00 31] "empty OBJ on OBJ"
+    [02 00 f4 00 00 00 00 31] "empty OBJ onto OBJ"
+
+216. 1 entry, verb = "transfer"
+    [02 00 fc 00 00 00 00 32] "transfer OBJ to OBJ"
+
+215. 8 entries, verb = "discard", synonyms = "drop", "throw"
+    [01 03 00 00 00 00 00 2f] "discard OBJ"
+    [02 04 f8 00 00 00 00 2d] "discard OBJ in OBJ"
+    [02 04 f7 00 00 00 00 2d] "discard OBJ into OBJ"
+    [02 04 fd 00 00 00 00 2e] "discard OBJ on OBJ"
+    [02 04 f4 00 00 00 00 2e] "discard OBJ onto OBJ"
+    [02 04 f3 00 00 00 00 2d] "discard OBJ down OBJ"
+    [02 01 f2 00 00 00 00 33] "discard OBJ at OBJ"
+    [02 01 f1 00 00 00 00 33] "discard OBJ against OBJ"
+
+214. 3 entries, verb = "feed", synonyms = "give", "offer", "pay"
+    [02 06 01 00 00 00 00 34] "feed OBJ OBJ"
+    [02 01 fc 06 00 00 00 35] "feed OBJ to OBJ"
+    [02 f0 01 fc 06 00 00 35] "feed over OBJ OBJ"
+
+213. 2 entries, verb = "display", synonyms = "present", "show"
+    [02 06 01 00 00 00 00 36] "display OBJ OBJ"
+    [02 01 fc 06 00 00 00 37] "display OBJ to OBJ"
+
+212. 7 entries, verb = "go", synonyms = "leave", "run", "walk"
+    [00 00 00 00 00 00 00 38] "go"
+    [01 10 00 00 00 00 00 39] "go OBJ"
+    [01 00 00 00 00 00 00 28] "go OBJ"
+    [01 f7 00 00 00 00 00 28] "go into OBJ"
+    [01 f8 00 00 00 00 00 28] "go in OBJ"
+    [01 f5 00 00 00 00 00 28] "go inside OBJ"
+    [01 ef 00 00 00 00 00 28] "go through OBJ"
+
+211. 3 entries, verb = "i", synonyms = "inv", "inventory"
+    [00 00 00 00 00 00 00 2b] "i"
+    [00 ee 00 00 00 00 00 3a] "i tall"
+    [00 ed 00 00 00 00 00 3b] "i wide"
+
+210. 8 entries, verb = "l", synonyms = "look"
+    [00 00 00 00 00 00 00 3c] "l"
+    [01 f2 00 00 00 00 00 3d] "l at OBJ"
+    [01 f5 00 00 00 00 00 3e] "l inside OBJ"
+    [01 f8 00 00 00 00 00 3e] "l in OBJ"
+    [01 f7 00 00 00 00 00 3e] "l into OBJ"
+    [01 ec 00 00 00 00 00 3f] "l under OBJ"
+    [01 ef 00 00 00 00 00 3e] "l through OBJ"
+    [02 fa 31 f8 00 00 00 40] "l up OBJ OBJ"
+
+209. 2 entries, verb = "consult"
+    [02 00 eb 32 00 00 00 40] "consult OBJ about OBJ"
+    [02 00 fd 32 00 00 00 40] "consult OBJ on OBJ"
+
+208. 2 entries, verb = "open", synonyms = "uncover", "undo", "unwrap"
+    [01 00 00 00 00 00 00 41] "open OBJ"
+    [02 00 ea 01 00 00 00 42] "open OBJ with OBJ"
+
+207. 3 entries, verb = "close", synonyms = "cover", "shut"
+    [01 00 00 00 00 00 00 43] "close OBJ"
+    [00 fa 00 00 00 00 00 43] "close up"
+    [01 fe 00 00 00 00 00 44] "close off OBJ"
+
+206. 2 entries, verb = "cross", synonyms = "enter"
+    [00 00 00 00 00 00 00 45] "cross"
+    [01 00 00 00 00 00 00 28] "cross OBJ"
+
+205. 3 entries, verb = "lie", synonyms = "sit"
+    [01 fd 00 00 00 00 00 28] "lie on OBJ"
+    [01 f8 00 00 00 00 00 28] "lie in OBJ"
+    [01 f5 00 00 00 00 00 28] "lie inside OBJ"
+
+204. 1 entry, verb = "in", synonyms = "inside"
+    [00 00 00 00 00 00 00 45] "in"
+
+203. 1 entry, verb = "exit", synonyms = "out", "outside"
+    [00 00 00 00 00 00 00 25] "exit"
+
+202. 1 entry, verb = "check", synonyms = "describe", "examine", "watch", "x"
+    [01 00 00 00 00 00 00 3d] "check OBJ"
+
+201. 3 entries, verb = "read"
+    [01 00 00 00 00 00 00 3d] "read OBJ"
+    [02 eb 31 f8 00 00 00 40] "read about OBJ OBJ"
+    [02 31 f8 00 00 00 00 40] "read OBJ in OBJ"
+
+200. 1 entry, verb = "y", synonyms = "yes"
+    [00 00 00 00 00 00 00 46] "y"
+
+199. 1 entry, verb = "no"
+    [00 00 00 00 00 00 00 47] "no"
+
+198. 1 entry, verb = "sorry"
+    [00 00 00 00 00 00 00 48] "sorry"
+
+197. 2 entries, verb = "damn", synonyms = "fuck", "shit", "sod"
+    [00 00 00 00 00 00 00 49] "damn"
+    [01 07 00 00 00 00 00 49] "damn OBJ"
+
+196. 2 entries, verb = "bother", synonyms = "curses", "darn", "drat"
+    [00 00 00 00 00 00 00 4a] "bother"
+    [01 07 00 00 00 00 00 4a] "bother OBJ"
+
+195. 1 entry, verb = "search"
+    [01 00 00 00 00 00 00 3e] "search OBJ"
+
+194. 2 entries, verb = "wave"
+    [00 00 00 00 00 00 00 4b] "wave"
+    [01 00 00 00 00 00 00 4c] "wave OBJ"
+
+193. 2 entries, verb = "adjust", synonyms = "set"
+    [01 00 00 00 00 00 00 4d] "adjust OBJ"
+    [02 00 fc 07 00 00 00 4e] "adjust OBJ to OBJ"
+
+192. 1 entry, verb = "drag", synonyms = "pull"
+    [01 00 00 00 00 00 00 4f] "drag OBJ"
+
+191. 3 entries, verb = "clear", synonyms = "move", "press", "push", "shift"
+    [01 00 00 00 00 00 00 50] "clear OBJ"
+    [02 00 00 00 00 00 00 51] "clear OBJ OBJ"
+    [02 00 fc 00 00 00 00 32] "clear OBJ to OBJ"
+
+190. 5 entries, verb = "rotate", synonyms = "screw", "turn", "twist", "unscrew"
+    [01 00 00 00 00 00 00 52] "rotate OBJ"
+    [01 00 fd 00 00 00 00 53] "rotate OBJ on"
+    [01 00 fe 00 00 00 00 44] "rotate OBJ off"
+    [01 fd 00 00 00 00 00 53] "rotate on OBJ"
+    [01 fe 00 00 00 00 00 44] "rotate off OBJ"
+
+189. 5 entries, verb = "switch"
+    [01 00 00 00 00 00 00 53] "switch OBJ"
+    [01 00 fd 00 00 00 00 53] "switch OBJ on"
+    [01 00 fe 00 00 00 00 44] "switch OBJ off"
+    [01 fd 00 00 00 00 00 53] "switch on OBJ"
+    [01 fe 00 00 00 00 00 44] "switch off OBJ"
+
+188. 1 entry, verb = "lock"
+    [02 00 ea 01 00 00 00 54] "lock OBJ with OBJ"
+
+187. 1 entry, verb = "unlock"
+    [02 00 ea 01 00 00 00 42] "unlock OBJ with OBJ"
+
+186. 1 entry, verb = "attack", synonyms = "break", "crack", "destroy", "fight",
+                                          "hit", "kill", "murder", "punch",
+                                          "smash", "thump", "torture", "wreck"
+    [01 00 00 00 00 00 00 55] "attack OBJ"
+
+185. 1 entry, verb = "wait", synonyms = "z"
+    [00 00 00 00 00 00 00 56] "wait"
+
+184. 1 entry, verb = "answer", synonyms = "say", "shout", "speak"
+    [02 32 fc 06 00 00 00 57] "answer OBJ to OBJ"
+
+183. 1 entry, verb = "tell"
+    [02 06 eb 32 00 00 00 58] "tell OBJ about OBJ"
+
+182. 2 entries, verb = "ask"
+    [02 06 eb 32 00 00 00 59] "ask OBJ about OBJ"
+    [02 06 e9 00 00 00 00 5a] "ask OBJ for OBJ"
+
+181. 1 entry, verb = "eat"
+    [01 01 00 00 00 00 00 5b] "eat OBJ"
+
+180. 1 entry, verb = "nap", synonyms = "sleep"
+    [00 00 00 00 00 00 00 5c] "nap"
+
+179. 2 entries, verb = "peel"
+    [01 00 00 00 00 00 00 26] "peel OBJ"
+    [01 fe 00 00 00 00 00 26] "peel off OBJ"
+
+178. 1 entry, verb = "sing"
+    [00 00 00 00 00 00 00 5d] "sing"
+
+177. 3 entries, verb = "climb", synonyms = "scale"
+    [01 00 00 00 00 00 00 5e] "climb OBJ"
+    [01 fa 00 00 00 00 00 5e] "climb up OBJ"
+    [01 f0 00 00 00 00 00 5e] "climb over OBJ"
+
+176. 1 entry, verb = "buy", synonyms = "purchase"
+    [01 00 00 00 00 00 00 5f] "buy OBJ"
+
+175. 1 entry, verb = "squash", synonyms = "squeeze"
+    [01 00 00 00 00 00 00 60] "squash OBJ"
+
+174. 1 entry, verb = "dive", synonyms = "swim"
+    [00 00 00 00 00 00 00 61] "dive"
+
+173. 2 entries, verb = "swing"
+    [01 00 00 00 00 00 00 62] "swing OBJ"
+    [01 fd 00 00 00 00 00 62] "swing on OBJ"
+
+172. 1 entry, verb = "blow"
+    [01 01 00 00 00 00 00 63] "blow OBJ"
+
+171. 1 entry, verb = "pray"
+    [00 00 00 00 00 00 00 64] "pray"
+
+170. 5 entries, verb = "awake", synonyms = "awaken", "wake"
+    [00 00 00 00 00 00 00 65] "awake"
+    [00 fa 00 00 00 00 00 65] "awake up"
+    [01 06 00 00 00 00 00 66] "awake OBJ"
+    [01 06 fa 00 00 00 00 66] "awake OBJ up"
+    [01 fa 06 00 00 00 00 66] "awake up OBJ"
+
+169. 1 entry, verb = "embrace", synonyms = "hug", "kiss"
+    [01 06 00 00 00 00 00 67] "embrace OBJ"
+
+168. 1 entry, verb = "think"
+    [00 00 00 00 00 00 00 68] "think"
+
+167. 2 entries, verb = "smell", synonyms = "sniff"
+    [00 00 00 00 00 00 00 69] "smell"
+    [01 00 00 00 00 00 00 69] "smell OBJ"
+
+166. 3 entries, verb = "hear", synonyms = "listen"
+    [00 00 00 00 00 00 00 6a] "hear"
+    [01 00 00 00 00 00 00 6a] "hear OBJ"
+    [01 fc 00 00 00 00 00 6a] "hear to OBJ"
+
+165. 1 entry, verb = "taste"
+    [01 00 00 00 00 00 00 6b] "taste OBJ"
+
+164. 1 entry, verb = "feel", synonyms = "fondle", "grope", "touch"
+    [01 00 00 00 00 00 00 6c] "feel OBJ"
+
+163. 1 entry, verb = "clean", synonyms = "dust", "polish", "rub", "scrub",
+                                         "shine", "sweep", "wipe"
+    [01 00 00 00 00 00 00 6d] "clean OBJ"
+
+162. 2 entries, verb = "attach", synonyms = "fasten", "fix", "tie"
+    [01 00 00 00 00 00 00 6e] "attach OBJ"
+    [02 00 fc 00 00 00 00 6e] "attach OBJ to OBJ"
+
+161. 2 entries, verb = "burn", synonyms = "light"
+    [01 00 00 00 00 00 00 6f] "burn OBJ"
+    [02 00 ea 01 00 00 00 6f] "burn OBJ with OBJ"
+
+160. 1 entry, verb = "drink", synonyms = "sip", "swallow"
+    [01 00 00 00 00 00 00 70] "drink OBJ"
+
+159. 1 entry, verb = "fill"
+    [01 00 00 00 00 00 00 71] "fill OBJ"
+
+158. 1 entry, verb = "chop", synonyms = "cut", "prune", "slice"
+    [01 00 00 00 00 00 00 72] "chop OBJ"
+
+157. 2 entries, verb = "hop", synonyms = "jump", "skip"
+    [00 00 00 00 00 00 00 73] "hop"
+    [01 f0 00 00 00 00 00 74] "hop over OBJ"
+
+156. 2 entries, verb = "dig"
+    [01 00 00 00 00 00 00 75] "dig OBJ"
+    [02 00 ea 01 00 00 00 75] "dig OBJ with OBJ"
+
+    **** Verb action routines ****
+
+  Action table entries = 118
+
+action# pre-action-routine action-routine "verb..."
+
+  0.  b2b0  7cdc  "score"
+  1.  b30c  7d44  "no-verb"
+                  "no-verb score"
+  2.  b2b8  7ad4  "no-verb"
+  3.     0  7b00  "no-verb"
+  4.     0  7ae8  "no-verb"
+  5.     0  7b38  "no-verb"
+  6.     0  7b1c  "no-verb"
+  7.     0  7b50  "no-verb"
+                  "no-verb on"
+  8.     0  7b7c  "no-verb off"
+                  "no-verb"
+  9.     0  88d0  "no-verb"
+ 10.     0  88c0  "no-verb"
+ 11.     0  88b0  "no-verb"
+ 12.     0  6898  "no-verb"
+ 13.     0  7ba4  "no-verb on"
+ 14.     0  7bb0  "no-verb off"
+ 15.     0  6bd8  "no-verb"
+ 16.     0  7bbc  "no-verb"
+ 17.     0  7c0c  "no-verb"
+ 18.     0  90c4  "no-verb"
+                  "no-verb on"
+ 19.     0  90d8  "no-verb OBJ"
+ 20.     0  9100  "no-verb off"
+ 21.     0  9148  "no-verb"
+                  "no-verb on"
+ 22.     0  9164  "no-verb off"
+ 23.     0  9110  "no-verb"
+                  "no-verb on"
+ 24.     0  912c  "no-verb off"
+ 25.     0  9180  "no-verb"
+                  "no-verb on"
+ 26.     0  919c  "no-verb off"
+ 27.     0  91b8  "no-verb"
+                  "no-verb on"
+ 28.     0  91d8  "no-verb off"
+ 29.     0  91fc  "no-verb"
+ 30.     0  9218  "no-verb"
+ 31.     0  9244  "no-verb OBJ"
+ 32.     0  9260  "no-verb OBJ to OBJ"
+ 33.     0  92d4  "no-verb"
+                  "no-verb OBJ"
+ 34.     0  9300  "no-verb OBJ"
+ 35.     0  932c  "no-verb OBJ"
+ 36.     0  9360  "no-verb"
+                  "no-verb OBJ"
+ 37.     0  8540  "carry out"
+                  "carry off"
+                  "carry up"
+                  "stand"
+                  "stand up"
+                  "exit"
+ 38.     0  7e2c  "carry OBJ"
+                  "pick up OBJ"
+                  "pick OBJ up"
+                  "remove OBJ"
+                  "peel OBJ"
+                  "peel off OBJ"
+ 39.     0  8074  "carry OBJ from OBJ"
+                  "carry OBJ off OBJ"
+                  "remove OBJ from OBJ"
+ 40.     0  84a8  "carry in OBJ"
+                  "carry into OBJ"
+                  "carry on OBJ"
+                  "stand on OBJ"
+                  "go OBJ"
+                  "go into OBJ"
+                  "go in OBJ"
+                  "go inside OBJ"
+                  "go through OBJ"
+                  "cross OBJ"
+                  "lie on OBJ"
+                  "lie in OBJ"
+                  "lie inside OBJ"
+ 41.     0  8cdc  "carry off OBJ "
+                  "remove OBJ"
+                  "disrobe OBJ"
+ 42.     0  8528  "carry off OBJ"
+ 43.     0  7dd4  "carry inventory"
+                  "i"
+ 44.     0  8d08  "don OBJ"
+                  "put on OBJ"
+ 45.     0  81f0  "put OBJ in OBJ"
+                  "put OBJ inside OBJ"
+                  "put OBJ into OBJ"
+                  "insert OBJ in OBJ"
+                  "insert OBJ into OBJ"
+                  "discard OBJ in OBJ"
+                  "discard OBJ into OBJ"
+                  "discard OBJ down OBJ"
+ 46.     0  80f4  "put OBJ on OBJ"
+                  "put OBJ onto OBJ"
+                  "discard OBJ on OBJ"
+                  "discard OBJ onto OBJ"
+ 47.     0  801c  "put down OBJ"
+                  "put OBJ down"
+                  "discard OBJ"
+ 48.     0  83a8  "empty OBJ"
+                  "empty out OBJ"
+                  "empty OBJ out"
+ 49.     0  83b0  "empty OBJ to OBJ"
+                  "empty OBJ into OBJ"
+                  "empty OBJ on OBJ"
+                  "empty OBJ onto OBJ"
+ 50.     0  82e4  "transfer OBJ to OBJ"
+                  "clear OBJ to OBJ"
+ 51.     0  8fe0  "discard OBJ at OBJ"
+                  "discard OBJ against OBJ"
+ 52.     0  845c  "feed OBJ OBJ"
+ 53.     0  8424  "feed OBJ to OBJ"
+                  "feed over OBJ OBJ"
+ 54.     0  849c  "display OBJ OBJ"
+ 55.     0  8468  "display OBJ to OBJ"
+ 56.     0  85bc  "go"
+ 57.     0  85cc  "go OBJ"
+ 58.     0  7dc0  "i tall"
+ 59.     0  7db0  "i wide"
+ 60.     0  891c  "l"
+ 61.     0  8a20  "l at OBJ"
+                  "check OBJ"
+                  "read OBJ"
+ 62.     0  8a90  "l inside OBJ"
+                  "l in OBJ"
+                  "l into OBJ"
+                  "l through OBJ"
+                  "search OBJ"
+ 63.     0  8a78  "l under OBJ"
+ 64.     0  8e84  "l up OBJ OBJ"
+                  "consult OBJ about OBJ"
+                  "consult OBJ on OBJ"
+                  "read about OBJ OBJ"
+                  "read OBJ in OBJ"
+ 65.     0  8c40  "open OBJ"
+ 66.     0  8b2c  "open OBJ with OBJ"
+                  "unlock OBJ with OBJ"
+ 67.     0  8ca4  "close OBJ"
+                  "close up"
+ 68.     0  8c08  "close off OBJ"
+                  "rotate OBJ off"
+                  "rotate off OBJ"
+                  "switch OBJ off"
+                  "switch off OBJ"
+ 69.     0  85c4  "cross"
+                  "in"
+ 70.     0  8d80  "y"
+ 71.     0  8d88  "no"
+ 72.     0  8e14  "sorry"
+ 73.     0  8e1c  "damn"
+                  "damn OBJ"
+ 74.     0  8e24  "bother"
+                  "bother OBJ"
+ 75.     0  8e5c  "wave"
+ 76.     0  8eb4  "wave OBJ"
+ 77.     0  8e4c  "adjust OBJ"
+ 78.     0  8e54  "adjust OBJ to OBJ"
+ 79.     0  8ed0  "drag OBJ"
+ 80.     0  8f04  "clear OBJ"
+ 81.     0  8f80  "clear OBJ OBJ"
+ 82.     0  8f38  "rotate OBJ"
+ 83.     0  8bd0  "rotate OBJ on"
+                  "rotate on OBJ"
+                  "switch OBJ"
+                  "switch OBJ on"
+                  "switch on OBJ"
+ 84.     0  8b78  "lock OBJ with OBJ"
+ 85.     0  9020  "attack OBJ"
+ 86.     0  8f6c  "wait"
+ 87.     0  9060  "answer OBJ to OBJ"
+ 88.     0  9074  "tell OBJ about OBJ"
+ 89.     0  9098  "ask OBJ about OBJ"
+ 90.     0  90ac  "ask OBJ for OBJ"
+ 91.     0  8d54  "eat OBJ"
+ 92.     0  8e7c  "nap"
+ 93.     0  8e6c  "sing"
+ 94.     0  8e74  "climb OBJ"
+                  "climb up OBJ"
+                  "climb over OBJ"
+ 95.     0  8e64  "buy OBJ"
+ 96.     0  8fc8  "squash OBJ"
+ 97.     0  8e2c  "dive"
+ 98.     0  8e34  "swing OBJ"
+                  "swing on OBJ"
+ 99.     0  8e3c  "blow OBJ"
+100.     0  8d98  "pray"
+101.     0  8da0  "awake"
+                  "awake up"
+102.     0  8da8  "awake OBJ"
+                  "awake OBJ up"
+                  "awake up OBJ"
+103.     0  903c  "embrace OBJ"
+104.     0  8dbc  "think"
+105.     0  8dc4  "smell"
+                  "smell OBJ"
+106.     0  8dcc  "hear"
+                  "hear OBJ"
+                  "hear to OBJ"
+107.     0  8dd4  "taste OBJ"
+108.     0  8e90  "feel OBJ"
+109.     0  8e44  "clean OBJ"
+110.     0  8dfc  "attach OBJ"
+                  "attach OBJ to OBJ"
+111.     0  8d90  "burn OBJ"
+                  "burn OBJ with OBJ"
+112.     0  8e04  "drink OBJ"
+113.     0  8e0c  "fill OBJ"
+114.     0  8de4  "chop OBJ"
+115.     0  8dec  "hop"
+116.     0  8df4  "hop over OBJ"
+117.     0  8ddc  "dig OBJ"
+                  "dig OBJ with OBJ"
+
+    **** Prepositions ****
+
+  Table entries = 23
+
+233. "for"
+234. "with"
+235. "about"
+236. "under"
+237. "wide"
+238. "tall"
+239. "through"
+240. "over"
+241. "against"
+242. "at"
+243. "down"
+244. "onto"
+245. "inside"
+246. "inventory"
+247. "into"
+248. "in"
+249. "from"
+250. "up"
+251. "out"
+252. "to"
+253. "on"
+254. "off"
+255. "score"

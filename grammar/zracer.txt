@@ -1,0 +1,5 @@
+Story file is zracer.z5
+
+    **** There are no parse tables ****
+
+  Verb entries = 0

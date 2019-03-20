@@ -1,0 +1,169 @@
+Story file is sh1.z5
+
+    **** Parse tables ****
+
+  Verb entries = 16
+
+255. 1 entry, verb = "die", synonyms = "q", "quit"
+    [00 01 0f]                "die"
+
+254. 1 entry, verb = "restore"
+    [00 03 0f]                "restore"
+
+253. 1 entry, verb = "restart"
+    [00 02 0f]                "restart"
+
+252. 1 entry, verb = "verify"
+    [00 05 0f]                "verify"
+
+251. 1 entry, verb = "save"
+    [00 04 0f]                "save"
+
+250. 3 entries, verb = "script", synonyms = "transcrip"
+    [00 06 0f]                "script"
+    [00 07 42 16 1d 0f]       "script off"
+    [00 06 42 16 26 0f]       "script on"
+
+249. 1 entry, verb = "noscript", synonyms = "unscript"
+    [00 07 0f]                "noscript"
+
+248. 1 entry, verb = "version"
+    [00 5c 0f]                "version"
+
+247. 1 entry, verb = "a"
+    [00 5d 0f]                "a"
+
+246. 1 entry, verb = "b"
+    [00 5e 0f]                "b"
+
+245. 1 entry, verb = "c"
+    [00 5f 0f]                "c"
+
+244. 1 entry, verb = "d"
+    [00 60 0f]                "d"
+
+243. 1 entry, verb = "e"
+    [00 61 0f]                "e"
+
+242. 1 entry, verb = "f"
+    [00 62 0f]                "f"
+
+241. 1 entry, verb = "r"
+    [00 63 0f]                "r"
+
+240. 1 entry, verb = "help"
+    [00 64 0f]                "help"
+
+    **** Verb action routines ****
+
+  Action table entries = 101
+
+action# action-routine "verb..."
+
+  0.  5e10  
+  1.  7c60  "die"
+  2.  7c70  "restart"
+  3.  7c88  "restore"
+  4.  7ca0  "save"
+  5.  7cb8  "verify"
+  6.  7cd0  "script"
+            "script on"
+  7.  7d08  "script off"
+            "noscript"
+  8.  7d40  
+  9.  7d4c  
+ 10.  94b4  
+ 11.  7ea0  
+ 12.  7f1c  
+ 13.  8214  
+ 14.  829c  
+ 15.  8240  
+ 16.  82fc  
+ 17.  83f0  
+ 18.  8520  
+ 19.  8600  
+ 20.  863c  
+ 21.  8678  
+ 22.  875c  
+ 23.  8774  
+ 24.  87e0  
+ 25.  87f0  
+ 26.  8af4  
+ 27.  8b04  
+ 28.  8b14  
+ 29.  8b88  
+ 30.  8cc0  
+ 31.  8d14  
+ 32.  8d28  
+ 33.  8dc4  
+ 34.  8e14  
+ 35.  8e74  
+ 36.  8eb0  
+ 37.  8eec  
+ 38.  8f58  
+ 39.  8f94  
+ 40.  8fc4  
+ 41.  9010  
+ 42.  9058  
+ 43.  9060  
+ 44.  9068  
+ 45.  9074  
+ 46.  9080  
+ 47.  908c  
+ 48.  93e4  
+ 49.  90ac  
+ 50.  90b8  
+ 51.  90c4  
+ 52.  90d0  
+ 53.  91e4  
+ 54.  90dc  
+ 55.  90e8  
+ 56.  90f4  
+ 57.  9100  
+ 58.  910c  
+ 59.  9118  
+ 60.  9124  
+ 61.  9130  
+ 62.  913c  
+ 63.  9148  
+ 64.  93c0  
+ 65.  9154  
+ 66.  9160  
+ 67.  916c  
+ 68.  9178  
+ 69.  9184  
+ 70.  9190  
+ 71.  919c  
+ 72.  9214  
+ 73.  9230  
+ 74.  926c  
+ 75.  92a8  
+ 76.  92f8  
+ 77.  9344  
+ 78.  9364  
+ 79.  9428  
+ 80.  9410  
+ 81.  9448  
+ 82.  91a8  
+ 83.  91b4  
+ 84.  91c0  
+ 85.  92e4  
+ 86.  91cc  
+ 87.  91d8  
+ 88.  945c  
+ 89.  8630  
+ 90.  866c  
+ 91.  84e8  
+ 92.  6d00  "version"
+ 93.  cc24  "a"
+ 94.  cc2c  "b"
+ 95.  cc34  "c"
+ 96.  cc50  "d"
+ 97.  cc6c  "e"
+ 98.  cc88  "f"
+ 99.  ccac  "r"
+100.  cca4  "help"
+
+    **** Prepositions ****
+
+  Table entries = 0

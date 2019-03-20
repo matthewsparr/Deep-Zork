@@ -1,0 +1,19 @@
+
+Story file is zork1.z5
+
+    **** Story file header ****
+
+Z-code version:           3
+Interpreter flags:        Display score/moves
+Release number:           88
+Size of resident memory:  4e37
+Start PC:                 4f05
+Dictionary address:       3b21
+Object table address:     02b0
+Global variables address: 2271
+Size of dynamic memory:   2e53
+Game flags:               None
+Serial number:            840726
+Abbreviations address:    01f0
+File size:                14b8c
+Checksum:                 a129

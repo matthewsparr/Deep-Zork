@@ -1,0 +1,716 @@
+Story file is chico.z5
+
+    **** Parse tables ****
+
+  Verb entries = 113
+
+255. 1 entry, verb = "score"
+    [00 0c 0f]                "score"
+
+254. 2 entries, verb = "full", synonyms = "fullscore"
+    [00 0d 0f]                "full"
+    [00 0d 42 4b bc 0f]       "full score"
+
+253. 1 entry, verb = "die", synonyms = "q", "quit"
+    [00 01 0f]                "die"
+
+252. 1 entry, verb = "restore"
+    [00 03 0f]                "restore"
+
+251. 1 entry, verb = "restart"
+    [00 02 0f]                "restart"
+
+250. 1 entry, verb = "verify"
+    [00 05 0f]                "verify"
+
+249. 1 entry, verb = "save"
+    [00 04 0f]                "save"
+
+248. 3 entries, verb = "script", synonyms = "transcrip"
+    [00 06 0f]                "script"
+    [00 07 42 47 9f 0f]       "script off"
+    [00 06 42 47 cc 0f]       "script on"
+
+247. 1 entry, verb = "noscript", synonyms = "unscript"
+    [00 07 0f]                "noscript"
+
+246. 1 entry, verb = "short", synonyms = "superbrie"
+    [00 1e 0f]                "short"
+
+245. 1 entry, verb = "long", synonyms = "verbose"
+    [00 1d 0f]                "long"
+
+244. 1 entry, verb = "brief", synonyms = "normal"
+    [00 1c 0f]                "brief"
+
+243. 1 entry, verb = "nouns", synonyms = "pronouns"
+    [00 00 0f]                "nouns"
+
+242. 2 entries, verb = "notify"
+    [00 08 42 47 cc 0f]       "notify on"
+    [00 09 42 47 9f 0f]       "notify off"
+
+241. 1 entry, verb = "version"
+    [00 6e 0f]                "version"
+
+240. 1 entry, verb = "places"
+    [00 0a 0f]                "places"
+
+239. 1 entry, verb = "objects"
+    [00 0b 0f]                "objects"
+
+238. 5 entries, verb = "carry", synonyms = "hold", "take"
+    [00 0f 01 00 02 0f]       "carry multi"
+    [00 29 42 47 9f 04 00 1a 0f] "carry off ATTRIBUTE(26)"
+    [00 11 01 00 05 42 41 93 01 00 00 0f] "carry multiinside from noun"
+    [00 11 01 00 05 42 47 9f 01 00 00 0f] "carry multiinside off noun"
+    [00 0e 42 43 ca 0f]       "carry inventory"
+
+237. 5 entries, verb = "get"
+    [00 19 62 48 1d 72 47 9f 52 51 c8 0f] "get out / off / up"
+    [00 0f 01 00 02 0f]       "get multi"
+    [00 17 62 43 8b 72 43 b8 72 47 cc 52 47 de 01 00 00 0f] "get in / into / on
+/ onto noun"
+    [00 18 42 47 9f 01 00 00 0f] "get off noun"
+    [00 11 01 00 05 42 41 93 01 00 00 0f] "get multiinside from noun"
+
+236. 2 entries, verb = "pick"
+    [00 0f 42 51 c8 01 00 02 0f] "pick up multi"
+    [00 0f 01 00 02 42 51 c8 0f] "pick multi up"
+
+235. 3 entries, verb = "stand"
+    [00 19 0f]                "stand"
+    [00 19 42 51 c8 0f]       "stand up"
+    [00 17 42 47 cc 01 00 00 0f] "stand on noun"
+
+234. 3 entries, verb = "remove"
+    [00 29 01 00 01 0f]       "remove held"
+    [00 0f 01 00 02 0f]       "remove multi"
+    [00 11 01 00 05 42 41 93 01 00 00 0f] "remove multiinside from noun"
+
+233. 1 entry, verb = "disrobe", synonyms = "doff", "shed"
+    [00 29 01 00 01 0f]       "disrobe held"
+
+232. 1 entry, verb = "don", synonyms = "wear"
+    [00 2a 01 00 01 0f]       "don held"
+
+231. 5 entries, verb = "put"
+    [00 13 01 00 04 62 43 8b 72 43 a6 52 43 b8 01 00 00 0f] "put multiexcept in
+/ inside / into noun"
+    [00 12 01 00 04 62 47 cc 52 47 de 01 00 00 0f] "put multiexcept on / onto
+noun"
+    [00 2a 42 47 cc 01 00 01 0f] "put on held"
+    [00 10 42 3f 77 01 00 03 0f] "put down multiheld"
+    [00 10 01 00 03 42 3f 77 0f] "put multiheld down"
+
+230. 1 entry, verb = "insert"
+    [00 13 01 00 04 62 43 8b 52 43 b8 01 00 00 0f] "insert multiexcept in /
+into noun"
+
+229. 4 entries, verb = "empty"
+    [00 6f 01 00 00 0f]       "empty noun"
+    [00 6f 42 48 1d 01 00 00 0f] "empty out noun"
+    [00 6f 01 00 00 42 48 1d 0f] "empty noun out"
+    [00 14 01 00 00 62 50 8d 72 43 b8 72 47 cc 52 47 de 01 00 00 0f] "empty
+noun to / into / on / onto noun"
+
+228. 1 entry, verb = "transfer"
+    [00 5d 01 00 00 42 50 8d 01 00 00 0f] "transfer noun to noun"
+
+227. 4 entries, verb = "discard", synonyms = "drop", "throw"
+    [00 10 01 00 03 0f]       "discard multiheld"
+    [00 13 01 00 04 62 43 8b 72 43 b8 52 3f 77 01 00 00 0f] "discard
+multiexcept in / into / down noun"
+    [00 12 01 00 04 62 47 cc 52 47 de 01 00 00 0f] "discard multiexcept on /
+onto noun"
+    [00 50 01 00 01 62 3a 9d 72 39 e9 72 47 cc 52 47 de 01 00 00 0f] "discard
+held at / against / on / onto noun"
+
+226. 3 entries, verb = "feed", synonyms = "give", "offer", "pay"
+    [00 15 01 00 01 42 50 8d 01 00 06 0f] "feed held to creature"
+    [04 15 01 00 06 01 00 01 0f] "feed creature held" REVERSE
+    [00 15 42 48 38 01 00 01 42 50 8d 01 00 06 0f] "feed over held to creature"
+
+225. 2 entries, verb = "display", synonyms = "present", "show"
+    [04 16 01 00 06 01 00 01 0f] "display creature held" REVERSE
+    [00 16 01 00 01 42 50 8d 01 00 06 0f] "display held to creature"
+
+224. 4 entries, verb = "go", synonyms = "run", "walk"
+    [00 1a 0f]                "go"
+    [00 1b 83 41 ac 0f]       "go noun = [parse $41ac]"
+    [00 17 01 00 00 0f]       "go noun"
+    [00 17 62 43 b8 72 43 8b 72 43 a6 52 50 45 01 00 00 0f] "go into / in /
+inside / through noun"
+
+223. 4 entries, verb = "leave"
+    [00 1a 0f]                "leave"
+    [00 1b 83 41 ac 0f]       "leave noun = [parse $41ac]"
+    [00 19 01 00 00 0f]       "leave noun"
+    [00 17 62 43 b8 72 43 8b 72 43 a6 52 50 45 01 00 00 0f] "leave into / in /
+inside / through noun"
+
+222. 3 entries, verb = "i", synonyms = "inv", "inventory"
+    [00 0e 0f]                "i"
+    [00 70 42 4f 91 0f]       "i tall"
+    [00 71 42 52 85 0f]       "i wide"
+
+221. 6 entries, verb = "l", synonyms = "look"
+    [00 1f 0f]                "l"
+    [00 20 42 3a 9d 01 00 00 0f] "l at noun"
+    [00 22 62 43 a6 72 43 8b 72 43 b8 52 50 45 01 00 00 0f] "l inside / in /
+into / through noun"
+    [00 21 42 51 77 01 00 00 0f] "l under noun"
+    [00 59 42 51 c8 01 00 09 42 43 8b 01 00 00 0f] "l up topic in noun"
+    [00 22 42 48 1d 01 00 00 0f] "l out noun"
+
+220. 2 entries, verb = "consult"
+    [00 59 01 00 00 42 39 aa 01 00 09 0f] "consult noun about topic"
+    [00 59 01 00 00 42 47 cc 01 00 09 0f] "consult noun on topic"
+
+219. 2 entries, verb = "open", synonyms = "uncover", "undo", "unwrap"
+    [00 27 01 00 00 0f]       "open noun"
+    [00 23 01 00 00 42 52 cd 01 00 01 0f] "open noun with held"
+
+218. 3 entries, verb = "close", synonyms = "cover", "shut"
+    [00 28 01 00 00 0f]       "close noun"
+    [00 28 42 51 c8 01 00 00 0f] "close up noun"
+    [00 26 42 47 9f 01 00 00 0f] "close off noun"
+
+217. 2 entries, verb = "cross", synonyms = "enter"
+    [00 6c 0f]                "cross"
+    [00 17 01 00 00 0f]       "cross noun"
+
+216. 2 entries, verb = "lie", synonyms = "sit"
+    [00 17 42 47 cc 42 50 9f 42 47 96 01 00 00 0f] "lie on top of noun"
+    [00 17 62 47 cc 72 43 8b 52 43 a6 01 00 00 0f] "lie on / in / inside noun"
+
+215. 1 entry, verb = "in", synonyms = "inside"
+    [00 6c 0f]                "in"
+
+214. 1 entry, verb = "exit", synonyms = "out", "outside"
+    [00 19 0f]                "exit"
+
+213. 1 entry, verb = "check", synonyms = "describe", "examine", "watch", "x"
+    [00 20 01 00 00 0f]       "check noun"
+
+212. 3 entries, verb = "read"
+    [00 20 01 00 00 0f]       "read noun"
+    [00 59 42 39 aa 01 00 09 42 43 8b 01 00 00 0f] "read about topic in noun"
+    [00 59 01 00 09 42 43 8b 01 00 00 0f] "read topic in noun"
+
+211. 1 entry, verb = "y", synonyms = "yes"
+    [00 2c 0f]                "y"
+
+210. 1 entry, verb = "no"
+    [00 2d 0f]                "no"
+
+209. 1 entry, verb = "sorry"
+    [00 3f 0f]                "sorry"
+
+208. 2 entries, verb = "damn", synonyms = "fuck", "shit", "sod"
+    [00 40 0f]                "damn"
+    [00 40 01 00 09 0f]       "damn topic"
+
+207. 2 entries, verb = "bother", synonyms = "curses", "darn", "drat"
+    [00 41 0f]                "bother"
+    [00 41 01 00 09 0f]       "bother topic"
+
+206. 1 entry, verb = "search"
+    [00 22 01 00 00 0f]       "search noun"
+
+205. 2 entries, verb = "wave"
+    [00 49 0f]                "wave"
+    [00 4a 01 00 00 0f]       "wave noun"
+
+204. 2 entries, verb = "adjust", synonyms = "set"
+    [00 47 01 00 00 0f]       "adjust noun"
+    [00 48 01 00 00 42 50 8d 01 00 07 0f] "adjust noun to special"
+
+203. 1 entry, verb = "drag", synonyms = "pull"
+    [00 4b 01 00 00 0f]       "drag noun"
+
+202. 3 entries, verb = "clear", synonyms = "move", "press", "push", "shift"
+    [00 4c 01 00 00 0f]       "clear noun"
+    [00 4e 01 00 00 01 00 00 0f] "clear noun noun"
+    [00 5d 01 00 00 42 50 8d 01 00 00 0f] "clear noun to noun"
+
+201. 5 entries, verb = "rotate", synonyms = "screw", "turn", "twist", "unscrew"
+    [00 4d 01 00 00 0f]       "rotate noun"
+    [00 25 01 00 00 42 47 cc 0f] "rotate noun on"
+    [00 26 01 00 00 42 47 9f 0f] "rotate noun off"
+    [00 25 42 47 cc 01 00 00 0f] "rotate on noun"
+    [00 26 42 47 9f 01 00 00 0f] "rotate off noun"
+
+200. 5 entries, verb = "switch"
+    [00 25 01 00 00 0f]       "switch noun"
+    [00 25 01 00 00 42 47 cc 0f] "switch noun on"
+    [00 26 01 00 00 42 47 9f 0f] "switch noun off"
+    [00 25 42 47 cc 01 00 00 0f] "switch on noun"
+    [00 26 42 47 9f 01 00 00 0f] "switch off noun"
+
+199. 1 entry, verb = "lock"
+    [00 24 01 00 00 42 52 cd 01 00 01 0f] "lock noun with held"
+
+198. 1 entry, verb = "unlock"
+    [00 23 01 00 00 42 52 cd 01 00 01 0f] "unlock noun with held"
+
+197. 4 entries, verb = "attack", synonyms = "break", "crack", "destroy",
+                                            "fight", "hit", "kill", "murder",
+                                            "punch", "smash", "thump",
+                                            "torture", "wreck"
+    [00 6b 42 4f ac 42 52 cd 01 00 00 0f] "attack target with noun"
+    [00 42 01 00 00 0f]       "attack noun"
+    [00 64 83 41 f1 62 43 b8 72 43 8b 52 3a 9d 83 41 ef 0f] "attack noun =
+[parse $41f1] into / in / at noun = [parse $41ef]"
+    [00 64 83 41 f1 42 48 1d 0f] "attack noun = [parse $41f1] out"
+
+196. 1 entry, verb = "wait", synonyms = "z"
+    [00 57 0f]                "wait"
+
+195. 1 entry, verb = "answer", synonyms = "say", "shout", "speak"
+    [00 52 01 00 09 42 50 8d 01 00 06 0f] "answer topic to creature"
+
+194. 1 entry, verb = "tell"
+    [00 51 01 00 06 42 39 aa 01 00 09 0f] "tell creature about topic"
+
+193. 2 entries, verb = "ask"
+    [00 53 01 00 06 42 39 aa 01 00 09 0f] "ask creature about topic"
+    [00 5a 01 00 06 42 41 6f 01 00 00 0f] "ask creature for noun"
+
+192. 1 entry, verb = "eat"
+    [00 2b 01 00 01 0f]       "eat held"
+
+191. 1 entry, verb = "nap", synonyms = "sleep"
+    [00 58 0f]                "nap"
+
+190. 2 entries, verb = "peel"
+    [00 0f 01 00 00 0f]       "peel noun"
+    [00 0f 42 47 9f 01 00 00 0f] "peel off noun"
+
+189. 1 entry, verb = "sing"
+    [00 55 0f]                "sing"
+
+188. 2 entries, verb = "climb", synonyms = "scale"
+    [00 56 01 00 00 0f]       "climb noun"
+    [00 56 62 51 c8 52 48 38 01 00 00 0f] "climb up / over noun"
+
+187. 1 entry, verb = "buy", synonyms = "purchase"
+    [00 54 01 00 00 0f]       "buy noun"
+
+186. 1 entry, verb = "squash", synonyms = "squeeze"
+    [00 4f 01 00 00 0f]       "squash noun"
+
+185. 1 entry, verb = "dive", synonyms = "swim"
+    [00 43 0f]                "dive"
+
+184. 2 entries, verb = "swing"
+    [00 44 01 00 00 0f]       "swing noun"
+    [00 44 42 47 cc 01 00 00 0f] "swing on noun"
+
+183. 2 entries, verb = "blow"
+    [00 7c 04 00 00 0f]       "blow ATTRIBUTE(0)"
+    [00 45 01 00 01 0f]       "blow held"
+
+182. 1 entry, verb = "pray"
+    [00 2f 0f]                "pray"
+
+181. 5 entries, verb = "awake", synonyms = "awaken", "wake"
+    [00 30 0f]                "awake"
+    [00 30 42 51 c8 0f]       "awake up"
+    [00 31 01 00 06 0f]       "awake creature"
+    [00 31 01 00 06 42 51 c8 0f] "awake creature up"
+    [00 31 42 51 c8 01 00 06 0f] "awake up creature"
+
+180. 1 entry, verb = "embrace", synonyms = "hug", "kiss"
+    [00 32 01 00 06 0f]       "embrace creature"
+
+179. 1 entry, verb = "think"
+    [00 33 0f]                "think"
+
+178. 2 entries, verb = "smell", synonyms = "sniff"
+    [00 34 0f]                "smell"
+    [00 34 01 00 00 0f]       "smell noun"
+
+177. 3 entries, verb = "hear", synonyms = "listen"
+    [00 35 0f]                "hear"
+    [00 35 01 00 00 0f]       "hear noun"
+    [00 35 42 50 8d 01 00 00 0f] "hear to noun"
+
+176. 1 entry, verb = "taste"
+    [00 36 01 00 00 0f]       "taste noun"
+
+175. 1 entry, verb = "feel", synonyms = "fondle", "grope", "touch"
+    [00 37 01 00 00 0f]       "feel noun"
+
+174. 1 entry, verb = "clean", synonyms = "polish", "rub", "scrub", "shine",
+                                         "wipe"
+    [00 46 01 00 00 0f]       "clean noun"
+
+173. 2 entries, verb = "attach", synonyms = "fasten", "fix", "tie"
+    [00 3c 01 00 00 0f]       "attach noun"
+    [00 3c 01 00 00 42 50 8d 01 00 00 0f] "attach noun to noun"
+
+172. 2 entries, verb = "burn", synonyms = "light"
+    [00 2e 01 00 00 0f]       "burn noun"
+    [00 2e 01 00 00 42 52 cd 01 00 01 0f] "burn noun with held"
+
+171. 1 entry, verb = "drink", synonyms = "sip", "swallow"
+    [00 3d 01 00 00 0f]       "drink noun"
+
+170. 1 entry, verb = "fill"
+    [00 3e 01 00 00 0f]       "fill noun"
+
+169. 5 entries, verb = "chop", synonyms = "cut", "prune", "slice"
+    [00 39 01 00 00 0f]       "chop noun"
+    [00 39 01 00 00 62 52 cd 52 51 d1 01 00 00 0f] "chop noun with / using
+noun"
+    [00 39 01 00 00 62 52 cd 52 51 d1 01 00 00 0f] "chop noun with / using
+noun"
+    [00 39 01 00 00 62 52 cd 52 51 d1 01 00 00 0f] "chop noun with / using
+noun"
+    [00 39 01 00 00 62 52 cd 52 51 d1 01 00 00 0f] "chop noun with / using
+noun"
+
+168. 2 entries, verb = "hop", synonyms = "jump", "skip"
+    [00 3a 0f]                "hop"
+    [00 3b 42 48 38 01 00 00 0f] "hop over noun"
+
+167. 2 entries, verb = "dig"
+    [00 38 01 00 00 0f]       "dig noun"
+    [00 38 01 00 00 42 52 cd 01 00 01 0f] "dig noun with held"
+
+166. 3 entries, verb = "knock"
+    [00 69 0f]                "knock"
+    [00 69 42 47 cc 01 00 00 0f] "knock on noun"
+    [00 69 01 00 00 0f]       "knock noun"
+
+165. 1 entry, verb = "pour"
+    [00 5f 01 00 00 42 47 cc 01 00 00 0f] "pour noun on noun"
+
+164. 2 entries, verb = "play"
+    [00 60 0f]                "play"
+    [00 60 01 00 00 0f]       "play noun"
+
+163. 3 entries, verb = "ride"
+    [00 68 0f]                "ride"
+    [00 68 01 00 00 0f]       "ride noun"
+    [00 68 42 47 cc 01 00 00 0f] "ride on noun"
+
+162. 6 entries, verb = "serve"
+    [00 61 0f]                "serve"
+    [00 61 01 00 00 0f]       "serve noun"
+    [00 63 42 48 1d 0f]       "serve out"
+    [00 63 62 43 8b 72 43 b8 52 3a 9d 83 41 ef 0f] "serve in / into / at noun =
+[parse $41ef]"
+    [00 63 83 41 f1 42 48 1d 0f] "serve noun = [parse $41f1] out"
+    [00 63 83 41 f1 62 43 8b 72 43 b8 52 3a 9d 83 41 ef 0f] "serve noun =
+[parse $41f1] in / into / at noun = [parse $41ef]"
+
+161. 6 entries, verb = "volley"
+    [00 62 0f]                "volley"
+    [00 62 01 00 00 0f]       "volley noun"
+    [00 64 42 48 1d 0f]       "volley out"
+    [00 64 62 43 8b 72 43 b8 52 3a 9d 01 00 00 0f] "volley in / into / at noun"
+    [00 64 01 00 00 42 48 1d 0f] "volley noun out"
+    [00 64 01 00 00 62 43 8b 72 43 b8 52 3a 9d 01 00 00 0f] "volley noun in /
+into / at noun"
+
+160. 2 entries, verb = "miss"
+    [00 64 0f]                "miss"
+    [00 64 83 41 f1 0f]       "miss noun = [parse $41f1]"
+
+159. 1 entry, verb = "sample"
+    [00 6a 01 00 00 0f]       "sample noun"
+
+158. 1 entry, verb = "ink", synonyms = "sign"
+    [00 5e 01 00 00 0f]       "ink noun"
+
+157. 2 entries, verb = "dust", synonyms = "sweep"
+    [00 46 01 00 00 0f]       "dust noun"
+    [00 66 01 00 00 42 52 cd 01 00 00 0f] "dust noun with noun"
+
+156. 2 entries, verb = "fall", synonyms = "stumble", "trip"
+    [00 6d 0f]                "fall"
+    [00 6d 42 48 38 01 00 00 0f] "fall over noun"
+
+155. 1 entry, verb = "cocksucke", synonyms = "cunt", "motherfuc", "piss",
+                                             "tits"
+    [00 40 0f]                "cocksucke"
+
+154. 1 entry, verb = "gee", synonyms = "gosh"
+    [00 41 0f]                "gee"
+
+153. 1 entry, verb = "xyzzy"
+    [00 72 0f]                "xyzzy"
+
+152. 1 entry, verb = "masturbat"
+    [00 73 0f]                "masturbat"
+
+151. 1 entry, verb = "do"
+    [00 74 42 39 8f 42 3f 6e 42 4f 7f 0f] "do a double take"
+
+150. 1 entry, verb = "double"
+    [00 74 42 4f 7f 0f]       "double take"
+
+149. 1 entry, verb = "hurl"
+    [00 50 01 00 00 42 3a 9d 01 00 00 0f] "hurl noun at noun"
+
+148. 1 entry, verb = "about"
+    [00 75 0f]                "about"
+
+147. 1 entry, verb = "songs"
+    [00 76 0f]                "songs"
+
+146. 1 entry, verb = "author"
+    [00 77 0f]                "author"
+
+145. 1 entry, verb = "hello", synonyms = "hi"
+    [00 65 0f]                "hello"
+
+144. 5 entries, verb = "fly"
+    [00 78 0f]                "fly"
+    [00 79 04 00 00 0f]       "fly ATTRIBUTE(0)"
+    [00 67 01 00 00 0f]       "fly noun"
+    [00 79 42 47 cc 04 00 00 0f] "fly on ATTRIBUTE(0)"
+    [00 67 42 47 cc 01 00 00 0f] "fly on noun"
+
+143. 2 entries, verb = "help", synonyms = "hint"
+    [00 7a 0f]                "help"
+    [00 7b 01 00 00 0f]       "help noun"
+
+    **** Verb action routines ****
+
+  Action table entries = 125
+
+action# action-routine "verb..."
+
+  0.  9988  "nouns"
+  1.  b848  "die"
+  2.  b858  "restart"
+  3.  b870  "restore"
+  4.  b888  "save"
+  5.  b8b8  "verify"
+  6.  b8d0  "script"
+            "script on"
+  7.  b908  "script off"
+            "noscript"
+  8.  b940  "notify on"
+  9.  b94c  "notify off"
+ 10.  a838  "places"
+ 11.  a840  "objects"
+ 12.  d49c  "score"
+ 13.  ba98  "full"
+            "full score"
+ 14.  bb14  "carry inventory"
+            "i"
+ 15.  be0c  "carry multi"
+            "get multi"
+            "pick up multi"
+            "pick multi up"
+            "remove multi"
+            "peel noun"
+            "peel off noun"
+ 16.  be94  "put down multiheld"
+            "put multiheld down"
+            "discard multiheld"
+ 17.  be38  "carry multiinside from noun"
+            "carry multiinside off noun"
+            "get multiinside from noun"
+            "remove multiinside from noun"
+ 18.  bef4  "put multiexcept on / onto noun"
+            "discard multiexcept on / onto noun"
+ 19.  bfe8  "put multiexcept in / inside / into noun"
+            "insert multiexcept in / into noun"
+            "discard multiexcept in / into / down noun"
+ 20.  c118  "empty noun to / into / on / onto noun"
+ 21.  c1f8  "feed held to creature"
+            "feed creature held" REVERSE
+            "feed over held to creature"
+ 22.  c234  "display creature held" REVERSE
+            "display held to creature"
+ 23.  c270  "get in / into / on / onto noun"
+            "stand on noun"
+            "go noun"
+            "go into / in / inside / through noun"
+            "leave into / in / inside / through noun"
+            "cross noun"
+            "lie on top of noun"
+            "lie on / in / inside noun"
+ 24.  c354  "get off noun"
+ 25.  c36c  "get out / off / up"
+            "stand"
+            "stand up"
+            "leave noun"
+            "exit"
+ 26.  c3d8  "go"
+            "leave"
+ 27.  c3e8  "go noun = [parse $41ac]"
+            "leave noun = [parse $41ac]"
+ 28.  c6f0  "brief"
+ 29.  c700  "long"
+ 30. 10978  "short"
+ 31.  c774  "l"
+ 32.  c8ac  "l at noun"
+            "check noun"
+            "read noun"
+ 33.  c900  "l under noun"
+ 34.  c914  "l inside / in / into / through noun"
+            "l out noun"
+            "search noun"
+ 35.  c9b0  "open noun with held"
+            "unlock noun with held"
+ 36.  ca00  "lock noun with held"
+ 37.  ca60  "rotate noun on"
+            "rotate on noun"
+            "switch noun"
+            "switch noun on"
+            "switch on noun"
+ 38.  ca9c  "close off noun"
+            "rotate noun off"
+            "rotate off noun"
+            "switch noun off"
+            "switch off noun"
+ 39.  cad8  "open noun"
+ 40.  cb44  "close noun"
+            "close up noun"
+ 41.  cb80  "carry off ATTRIBUTE(26)"
+            "remove held"
+            "disrobe held"
+ 42.  cbb0  "don held"
+            "put on held"
+ 43.  cbfc  "eat held"
+ 44.  cc44  "y"
+ 45.  cc4c  "no"
+ 46.  cc54  "burn noun"
+            "burn noun with held"
+ 47.  cc60  "pray"
+ 48.  cc6c  "awake"
+            "awake up"
+ 49.  cc78  "awake creature"
+            "awake creature up"
+            "awake up creature"
+ 50.  cf8c  "embrace creature"
+ 51.  cc98  "think"
+ 52.  cca4  "smell"
+            "smell noun"
+ 53.  ccb0  "hear"
+            "hear noun"
+            "hear to noun"
+ 54.  ccbc  "taste noun"
+ 55.  cdac  "feel noun"
+ 56.  ccc8  "dig noun"
+            "dig noun with held"
+ 57.  ccd4  "chop noun"
+            "chop noun with / using noun"
+            "chop noun with / using noun"
+            "chop noun with / using noun"
+            "chop noun with / using noun"
+ 58.  cce0  "hop"
+ 59.  ccec  "hop over noun"
+ 60.  ccf8  "attach noun"
+            "attach noun to noun"
+ 61.  cd04  "drink noun"
+ 62.  cd10  "fill noun"
+ 63.  cd1c  "sorry"
+ 64. 10870  "damn"
+            "damn topic"
+            "cocksucke"
+ 65. 108e0  "bother"
+            "bother topic"
+            "gee"
+ 66.  cf68  "attack noun"
+ 67.  cd28  "dive"
+ 68.  cd34  "swing noun"
+            "swing on noun"
+ 69.  cd40  "blow held"
+ 70.  cd4c  "clean noun"
+            "dust noun"
+ 71.  cd58  "adjust noun"
+ 72.  cd64  "adjust noun to special"
+ 73.  cd70  "wave"
+ 74.  cddc  "wave noun"
+ 75.  cdf8  "drag noun"
+ 76.  ce34  "clear noun"
+ 77.  ce70  "rotate noun"
+ 78.  cec0  "clear noun noun"
+ 79. 10a38  "squash noun"
+ 80.  cf0c  "discard held at / against / on / onto noun"
+            "hurl noun at noun"
+ 81.  cfd0  "tell creature about topic"
+ 82.  cfb8  "answer topic to creature"
+ 83.  cff0  "ask creature about topic"
+ 84.  cd7c  "buy noun"
+ 85. 10928  "sing"
+ 86.  cd88  "climb noun"
+            "climb up / over noun"
+ 87.  ceac  "wait"
+ 88.  cd94  "nap"
+ 89.  cda0  "l up topic in noun"
+            "consult noun about topic"
+            "consult noun on topic"
+            "read about topic in noun"
+            "read topic in noun"
+ 90.  d004  "ask creature for noun"
+ 91.  c228  
+ 92.  c264  
+ 93.  c0e0  "transfer noun to noun"
+            "clear noun to noun"
+ 94. 1080c  "ink noun"
+ 95. 10760  "pour noun on noun"
+ 96. 10770  "play"
+            "play noun"
+ 97. 107cc  "serve"
+            "serve noun"
+ 98. 107e8  "volley"
+            "volley noun"
+ 99. 107e0  "serve out"
+            "serve in / into / at noun = [parse $41ef]"
+            "serve noun = [parse $41f1] out"
+            "serve noun = [parse $41f1] in / into / at noun = [parse $41ef]"
+100. 107fc  "attack noun = [parse $41f1] into / in / at noun = [parse $41ef]"
+            "attack noun = [parse $41f1] out"
+            "volley out"
+            "volley in / into / at noun"
+            "volley noun out"
+            "volley noun in / into / at noun"
+            "miss"
+            "miss noun = [parse $41f1]"
+101. 109f8  "hello"
+102. 10840  "dust noun with noun"
+103. 10a28  "fly noun"
+            "fly on noun"
+104. 10784  "ride"
+            "ride noun"
+            "ride on noun"
+105. 10750  "knock"
+            "knock on noun"
+            "knock noun"
+106. 10804  "sample noun"
+107. 107a8  "attack target with noun"
+108.  c3e0  "cross"
+            "in"
+109. 10858  "fall"
+            "fall over noun"
+110.  a8cc  "version"
+111.  c110  "empty noun"
+            "empty out noun"
+            "empty noun out"
+112.  bb08  "i tall"
+113.  bafc  "i wide"
+114. 108e8  "xyzzy"
+115. 108f0  "masturbat"
+116. 10920  "do a double take"
+            "double take"
+117. 10980  "about"
+118. 109cc  "songs"
+119. 109f0  "author"
+120. 10a00  "fly"
+121. 10a1c  "fly ATTRIBUTE(0)"
+            "fly on ATTRIBUTE(0)"
+122. 10a5c  "help"
+123. 10b88  "help noun"
+124. 10a54  "blow ATTRIBUTE(0)"
+
+    **** Prepositions ****
+
+  Table entries = 0

@@ -1,0 +1,364 @@
+Story file is 905.z5
+
+    **** Parse tables ****
+
+  Verb entries = 48
+
+255. 1 entry, verb = "die", synonyms = "q", "quit"
+    [00 37 0f]                "die"
+
+254. 3 entries, verb = "recording"
+    [00 0a 0f]                "recording"
+    [00 0a 42 24 77 0f]       "recording on"
+    [00 09 42 24 65 0f]       "recording off"
+
+253. 1 entry, verb = "replay"
+    [00 0b 0f]                "replay"
+
+252. 1 entry, verb = "restart"
+    [00 39 0f]                "restart"
+
+251. 1 entry, verb = "restore"
+    [00 3a 0f]                "restore"
+
+250. 1 entry, verb = "save"
+    [00 3c 0f]                "save"
+
+249. 3 entries, verb = "script", synonyms = "transcrip"
+    [00 3f 0f]                "script"
+    [00 3f 42 24 77 0f]       "script on"
+    [00 3e 42 24 65 0f]       "script off"
+
+248. 1 entry, verb = "noscript", synonyms = "unscript"
+    [00 3e 0f]                "noscript"
+
+247. 1 entry, verb = "attack", synonyms = "break", "crack", "destroy", "fight",
+                                          "hit", "kill", "murder", "punch",
+                                          "smash", "thump", "torture", "wreck"
+    [00 03 01 00 00 0f]       "attack noun"
+
+246. 1 entry, verb = "close", synonyms = "shut"
+    [00 08 01 00 00 0f]       "close noun"
+
+245. 1 entry, verb = "drop"
+    [00 11 01 00 03 0f]       "drop multiheld"
+
+244. 1 entry, verb = "eat"
+    [00 12 01 00 00 0f]       "eat noun"
+
+243. 2 entries, verb = "enter"
+    [00 65 0f]                "enter"
+    [00 14 01 00 00 0f]       "enter noun"
+
+242. 1 entry, verb = "examine", synonyms = "x"
+    [00 15 01 00 00 0f]       "examine noun"
+
+241. 2 entries, verb = "exit", synonyms = "out", "outside"
+    [00 16 0f]                "exit"
+    [00 16 01 00 00 0f]       "exit noun"
+
+240. 6 entries, verb = "get"
+    [00 16 62 24 ad 72 24 65 52 28 0d 0f] "get out / off / up"
+    [00 16 42 24 ad 42 24 5c 01 00 00 0f] "get out of noun"
+    [00 4e 01 00 02 0f]       "get multi"
+    [00 14 62 22 a3 72 22 be 72 24 77 52 24 89 01 00 00 0f] "get in / into / on
+/ onto noun"
+    [00 19 42 24 65 01 00 00 0f] "get off noun"
+    [00 38 01 00 05 42 21 d4 01 00 00 0f] "get multiinside from noun"
+
+239. 4 entries, verb = "go", synonyms = "run", "walk"
+    [00 55 0f]                "go"
+    [00 1b 83 42 a2 0f]       "go noun = [parse $42a2]"
+    [00 14 01 00 00 0f]       "go noun"
+    [00 14 62 27 6b 72 22 be 72 22 a3 72 22 b5 52 27 59 01 00 00 0f] "go to /
+into / in / inside / through noun"
+
+238. 1 entry, verb = "in", synonyms = "inside"
+    [00 65 0f]                "in"
+
+237. 1 entry, verb = "insert"
+    [00 1c 01 00 04 62 22 a3 52 22 be 01 00 00 0f] "insert multiexcept in /
+into noun"
+
+236. 3 entries, verb = "i", synonyms = "inv", "inventory"
+    [00 1d 0f]                "i"
+    [00 66 42 26 c9 0f]       "i tall"
+    [00 67 42 28 8b 0f]       "i wide"
+
+235. 4 entries, verb = "leave"
+    [00 55 0f]                "leave"
+    [00 1b 83 42 a2 0f]       "leave noun = [parse $42a2]"
+    [00 16 01 00 00 0f]       "leave noun"
+    [00 14 62 22 be 72 22 a3 72 22 b5 52 27 59 01 00 00 0f] "leave into / in /
+inside / through noun"
+
+234. 3 entries, verb = "hear", synonyms = "listen"
+    [00 22 0f]                "hear"
+    [00 22 01 00 00 0f]       "hear noun"
+    [00 22 42 27 6b 01 00 00 0f] "hear to noun"
+
+233. 1 entry, verb = "lock"
+    [00 26 01 00 00 0f]       "lock noun"
+
+232. 7 entries, verb = "l", synonyms = "look"
+    [00 00 0f]                "l"
+    [00 15 42 1e e0 01 00 00 0f] "l at noun"
+    [00 40 62 22 b5 72 22 a3 72 22 be 72 27 59 52 24 77 01 00 00 0f] "l inside
+/ in / into / through / on noun"
+    [00 27 42 27 d7 01 00 00 0f] "l under noun"
+    [00 0c 42 28 0d 01 00 09 42 22 a3 01 00 00 0f] "l up topic in noun"
+    [00 15 83 42 a2 0f]       "l noun = [parse $42a2]"
+    [00 15 42 27 6b 83 42 a2 0f] "l to noun = [parse $42a2]"
+
+231. 2 entries, verb = "open"
+    [00 2e 01 00 00 0f]       "open noun"
+    [00 54 01 00 00 42 28 94 01 00 01 0f] "open noun with held"
+
+230. 2 entries, verb = "pick"
+    [00 4e 42 28 0d 01 00 02 0f] "pick up multi"
+    [00 4e 01 00 02 42 28 0d 0f] "pick multi up"
+
+229. 5 entries, verb = "put"
+    [00 1c 01 00 04 62 22 a3 72 22 b5 52 22 be 01 00 00 0f] "put multiexcept in
+/ inside / into noun"
+    [00 36 01 00 04 62 24 77 52 24 89 01 00 00 0f] "put multiexcept on / onto
+noun"
+    [00 5c 42 24 77 01 00 01 0f] "put on held"
+    [00 11 42 20 99 01 00 03 0f] "put down multiheld"
+    [00 11 01 00 03 42 20 99 0f] "put multiheld down"
+
+228. 1 entry, verb = "read"
+    [00 15 01 00 00 0f]       "read noun"
+
+227. 1 entry, verb = "remove"
+    [00 0f 01 00 01 0f]       "remove held"
+
+226. 1 entry, verb = "search"
+    [00 40 01 00 00 0f]       "search noun"
+
+225. 2 entries, verb = "lie", synonyms = "sit"
+    [00 14 42 24 77 42 27 86 42 24 5c 01 00 00 0f] "lie on top of noun"
+    [00 14 62 24 77 72 22 a3 52 22 b5 01 00 00 0f] "lie on / in / inside noun"
+
+224. 1 entry, verb = "nap", synonyms = "sleep"
+    [00 45 0f]                "nap"
+
+223. 2 entries, verb = "smell", synonyms = "sniff"
+    [00 46 0f]                "smell"
+    [00 46 01 00 00 0f]       "smell noun"
+
+222. 3 entries, verb = "stand"
+    [00 16 0f]                "stand"
+    [00 16 42 28 0d 0f]       "stand up"
+    [00 14 42 24 77 01 00 00 0f] "stand on noun"
+
+221. 4 entries, verb = "carry", synonyms = "hold", "take"
+    [00 4e 01 00 02 0f]       "carry multi"
+    [00 0f 42 24 65 01 00 03 0f] "carry off multiheld"
+    [00 38 01 00 05 42 21 d4 01 00 00 0f] "carry multiinside from noun"
+    [00 1d 42 22 d0 0f]       "carry inventory"
+
+220. 1 entry, verb = "taste"
+    [00 4f 01 00 00 0f]       "taste noun"
+
+219. 4 entries, verb = "turn"
+    [00 4d 01 00 00 42 24 77 0f] "turn noun on"
+    [00 4c 01 00 00 42 24 65 0f] "turn noun off"
+    [00 4d 42 24 77 01 00 00 0f] "turn on noun"
+    [00 4c 42 24 65 01 00 00 0f] "turn off noun"
+
+218. 1 entry, verb = "don", synonyms = "wear"
+    [00 5c 01 00 01 0f]       "don held"
+
+217. 1 entry, verb = "unlock"
+    [00 54 01 00 00 0f]       "unlock noun"
+
+216. 1 entry, verb = "wait", synonyms = "z"
+    [00 57 0f]                "wait"
+
+215. 2 entries, verb = "awake", synonyms = "awaken", "wake"
+    [00 58 0f]                "awake"
+    [00 58 42 28 0d 0f]       "awake up"
+
+214. 1 entry, verb = "answer"
+    [00 68 01 00 00 0f]       "answer noun"
+
+213. 1 entry, verb = "drive"
+    [00 63 01 00 00 0f]       "drive noun"
+
+212. 1 entry, verb = "knock"
+    [00 03 42 24 77 01 00 00 0f] "knock on noun"
+
+211. 1 entry, verb = "bathe", synonyms = "shower", "wash"
+    [00 69 0f]                "bathe"
+
+210. 2 entries, verb = "sign"
+    [00 64 01 00 00 0f]       "sign noun"
+    [00 64 01 00 00 42 28 94 01 00 00 0f] "sign noun with noun"
+
+209. 1 entry, verb = "disrobe", synonyms = "undress"
+    [00 6a 0f]                "disrobe"
+
+208. 1 entry, verb = "use"
+    [00 62 01 00 00 0f]       "use noun"
+
+    **** Verb action routines ****
+
+  Action table entries = 107
+
+action# action-routine "verb..."
+
+  0.  ea48  "l"
+  1.  f350  
+  2.  f368  
+  3.  f39c  "attack noun"
+            "knock on noun"
+  4.  f3d0  
+  5.  f3dc  
+  6.  f3e8  
+  7.  f3f4  
+  8.  f110  "close noun"
+  9.  cc88  "recording off"
+ 10.  cc78  "recording"
+            "recording on"
+ 11.  cc9c  "replay"
+ 12.  f400  "l up topic in noun"
+ 13.  f40c  
+ 14.  f418  
+ 15.  f178  "remove held"
+            "carry off multiheld"
+ 16.  f424  
+ 17.  d730  "drop multiheld"
+            "put down multiheld"
+            "put multiheld down"
+ 18.  f254  "eat noun"
+ 19.  dc04  
+ 20.  deac  "enter noun"
+            "get in / into / on / onto noun"
+            "go noun"
+            "go to / into / in / inside / through noun"
+            "leave into / in / inside / through noun"
+            "lie on top of noun"
+            "lie on / in / inside noun"
+            "stand on noun"
+ 21.  ec6c  "examine noun"
+            "l at noun"
+            "l noun = [parse $42a2]"
+            "l to noun = [parse $42a2]"
+            "read noun"
+ 22.  e164  "exit"
+            "exit noun"
+            "get out / off / up"
+            "get out of noun"
+            "leave noun"
+            "stand"
+            "stand up"
+ 23.  f430  
+ 24.  cf2c  
+ 25.  e130  "get off noun"
+ 26.  ddf8  
+ 27.  e254  "go noun = [parse $42a2]"
+            "leave noun = [parse $42a2]"
+ 28.  d9d4  "insert multiexcept in / into noun"
+            "put multiexcept in / inside / into noun"
+ 29.  cfbc  "i"
+            "carry inventory"
+ 30.  f43c  
+ 31.  f448  
+ 32.  f730  
+ 33.  f454  
+ 34.  f480  "hear"
+            "hear noun"
+            "hear to noun"
+ 35.  e8f8  
+ 36.  e908  
+ 37.  e918  
+ 38.  eed0  "lock noun"
+ 39.  ecfc  "l under noun"
+ 40.  f48c  
+ 41.  f498  
+ 42.  f874  
+ 43.  ccb8  
+ 44.  ccac  
+ 45.  b0e4  
+ 46.  f03c  "open noun"
+ 47.  b0ec  
+ 48.  f4a0  
+ 49.  90d4  
+ 50.  f4ac  
+ 51.  f520  
+ 52.  f77c  
+ 53.  f594  
+ 54.  d82c  "put multiexcept on / onto noun"
+ 55.  cb74  "die"
+ 56.  d67c  "get multiinside from noun"
+            "carry multiinside from noun"
+ 57.  cb84  "restart"
+ 58.  cb9c  "restore"
+ 59.  f5a0  
+ 60.  cbb4  "save"
+ 61.  ce80  
+ 62.  cc3c  "script off"
+            "noscript"
+ 63.  cbfc  "script"
+            "script on"
+ 64.  ed94  "l inside / in / into / through / on noun"
+            "search noun"
+ 65.  f5ac  
+ 66.  f5b8  
+ 67.  de54  
+ 68.  f5c4  
+ 69.  f5d0  "nap"
+ 70.  f5dc  "smell"
+            "smell noun"
+ 71.  f5e8  
+ 72.  f5f4  
+ 73.  f628  
+ 74.  f634  
+ 75.  f640  
+ 76.  efd4  "turn noun off"
+            "turn off noun"
+ 77.  ef6c  "turn noun on"
+            "turn on noun"
+ 78.  d63c  "get multi"
+            "pick up multi"
+            "pick multi up"
+            "carry multi"
+ 79.  f64c  "taste noun"
+ 80.  f658  
+ 81.  f678  
+ 82.  f684  
+ 83.  f73c  
+ 84.  ee54  "open noun with held"
+            "unlock noun"
+ 85.  e244  "go"
+            "leave"
+ 86.  cbe4  
+ 87.  f7f0  "wait"
+ 88.  f804  "awake"
+            "awake up"
+ 89.  f810  
+ 90.  f830  
+ 91.  f868  
+ 92.  f1c0  "put on held"
+            "don held"
+ 93.  f390  
+ 94.  f37c  
+ 95.  de48  
+ 96.  dea0  
+ 97.  dba8  
+ 98. 10bbc  "use noun"
+ 99. 10b4c  "drive noun"
+100. 10b74  "sign noun"
+            "sign noun with noun"
+101.  e24c  "enter"
+            "in"
+102.  cfb0  "i tall"
+103.  cfa4  "i wide"
+104. 10b38  "answer noun"
+105. 10b60  "bathe"
+106. 10bb4  "disrobe"
+
+    **** Prepositions ****
+
+  Table entries = 0

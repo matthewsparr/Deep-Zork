@@ -1,0 +1,454 @@
+Story file is gostak.z5
+
+    **** Parse tables ****
+
+  Verb entries = 71
+
+255. 1 entry, verb = "score"
+    [00 0c 0f]                "score"
+
+254. 2 entries, verb = "full", synonyms = "fullscore"
+    [00 0d 0f]                "full"
+    [00 0d 42 4d 16 0f]       "full score"
+
+253. 1 entry, verb = "die", synonyms = "q", "quit"
+    [00 01 0f]                "die"
+
+252. 1 entry, verb = "restore"
+    [00 03 0f]                "restore"
+
+251. 1 entry, verb = "restart"
+    [00 02 0f]                "restart"
+
+250. 1 entry, verb = "verify"
+    [00 05 0f]                "verify"
+
+249. 1 entry, verb = "save"
+    [00 04 0f]                "save"
+
+248. 3 entries, verb = "script", synonyms = "transcrip"
+    [00 06 0f]                "script"
+    [00 07 42 4b 81 0f]       "script off"
+    [00 06 42 4b 8a 0f]       "script on"
+
+247. 1 entry, verb = "noscript", synonyms = "unscript"
+    [00 07 0f]                "noscript"
+
+246. 1 entry, verb = "short", synonyms = "superbrie"
+    [00 1e 0f]                "short"
+
+245. 1 entry, verb = "long", synonyms = "verbose"
+    [00 1d 0f]                "long"
+
+244. 1 entry, verb = "brief", synonyms = "normal"
+    [00 1c 0f]                "brief"
+
+243. 1 entry, verb = "nouns", synonyms = "pronouns"
+    [00 00 0f]                "nouns"
+
+242. 1 entry, verb = "version"
+    [00 69 0f]                "version"
+
+241. 1 entry, verb = "places"
+    [00 0a 0f]                "places"
+
+240. 1 entry, verb = "objects"
+    [00 0b 0f]                "objects"
+
+239. 3 entries, verb = "r", synonyms = "reb"
+    [00 1f 0f]                "r"
+    [00 6a 01 00 00 0f]       "r noun"
+    [00 59 42 4f 3b 01 00 09 42 49 80 01 00 00 0f] "r up topic in noun"
+
+238. 5 entries, verb = "t", synonyms = "tunk"
+    [00 7a 85 3a ba 0f]       "t scope = [parse $3aba]"
+    [00 20 01 00 00 0f]       "t noun"
+    [00 22 62 49 89 72 49 80 72 49 92 52 4e 99 01 00 00 0f] "t inside / in /
+into / through noun"
+    [00 21 42 4f 17 01 00 00 0f] "t under noun"
+    [00 1f 42 46 5f 0f]       "t deave"
+
+237. 3 entries, verb = "m", synonyms = "milm", "raskage"
+    [00 0e 0f]                "m"
+    [00 6b 42 4e 1b 0f]       "m tall"
+    [00 6c 42 4f 95 0f]       "m wide"
+
+236. 1 entry, verb = "z", synonyms = "zoncha"
+    [00 57 0f]                "z"
+
+235. 10 entries, verb = "pell"
+    [00 7b 85 3a ba 0f]       "pell scope = [parse $3aba]"
+    [00 7b 62 45 1b 72 4e ab 72 49 92 72 49 80 72 49 89 52 4e 99 85 3a ba 0f]
+"pell at / to / into / in / inside / through scope = [parse $3aba]"
+    [00 1a 0f]                "pell"
+    [00 1b 83 3a cb 0f]       "pell noun = [parse $3acb]"
+    [00 1b 62 45 1b 52 4e ab 83 3a cb 0f] "pell at / to noun = [parse $3acb]"
+    [00 17 01 00 00 0f]       "pell noun"
+    [00 17 62 45 1b 52 4e ab 01 00 00 0f] "pell at / to noun"
+    [00 17 62 49 92 72 49 80 72 49 89 52 4e 99 01 00 00 0f] "pell into / in /
+inside / through noun"
+    [00 19 62 4b b7 52 4b c9 0f] "pell out / outside"
+    [00 67 42 46 5f 0f]       "pell deave"
+
+234. 1 entry, verb = "glake", synonyms = "zank"
+    [00 42 01 00 00 0f]       "glake noun"
+
+233. 2 entries, verb = "doatch"
+    [00 53 62 45 1b 52 4e ab 01 00 06 42 44 c1 85 3a a9 0f] "doatch at / to
+creature about scope = [parse $3aa9]"
+    [04 53 42 44 c1 85 3a a9 62 45 1b 52 4e ab 01 00 06 0f] "doatch about scope
+= [parse $3aa9] at / to creature" REVERSE
+
+232. 3 entries, verb = "rask"
+    [00 0f 01 00 02 0f]       "rask multi"
+    [00 11 01 00 05 42 48 33 01 00 00 0f] "rask multiinside from noun"
+    [00 11 01 00 05 42 4b 81 01 00 00 0f] "rask multiinside off noun"
+
+231. 1 entry, verb = "disrask"
+    [00 10 01 00 03 0f]       "disrask multiheld"
+
+230. 6 entries, verb = "pob"
+    [00 10 01 00 03 0f]       "pob multiheld"
+    [00 13 01 00 04 62 49 80 72 49 92 52 48 f9 01 00 00 0f] "pob multiexcept in
+/ into / gronk noun"
+    [00 12 01 00 04 62 4b 8a 72 4b 9c 52 48 06 01 00 00 0f] "pob multiexcept on
+/ onto / fosken noun"
+    [00 50 01 00 01 62 45 1b 72 44 e5 72 4b 8a 52 4b 9c 01 00 00 0f] "pob held
+at / against / on / onto noun"
+    [00 10 42 48 f9 01 00 03 0f] "pob gronk multiheld"
+    [00 10 01 00 03 42 48 f9 0f] "pob multiheld gronk"
+
+229. 1 entry, verb = "motch"
+    [04 13 01 00 00 42 4f 9e 01 00 04 0f] "motch noun with multiexcept" REVERSE
+
+228. 2 entries, verb = "dislello", synonyms = "skobe"
+    [00 27 01 00 00 0f]       "dislello noun"
+    [00 23 01 00 00 42 4f 9e 01 00 01 0f] "dislello noun with held"
+
+227. 1 entry, verb = "lello"
+    [00 28 01 00 00 0f]       "lello noun"
+
+226. 1 entry, verb = "disnarb"
+    [00 29 01 00 01 0f]       "disnarb held"
+
+225. 1 entry, verb = "narb"
+    [00 2a 01 00 01 0f]       "narb held"
+
+224. 1 entry, verb = "roggle"
+    [00 24 01 00 00 42 4f 9e 01 00 01 0f] "roggle noun with held"
+
+223. 1 entry, verb = "reggle"
+    [00 23 01 00 00 42 4f 9e 01 00 01 0f] "reggle noun with held"
+
+222. 1 entry, verb = "fargish"
+    [00 15 01 00 01 42 45 1b 01 00 06 0f] "fargish held at creature"
+
+221. 1 entry, verb = "thalen"
+    [00 6d 01 00 00 0f]       "thalen noun"
+
+220. 2 entries, verb = "gomb", synonyms = "regomb"
+    [00 6e 0f]                "gomb"
+    [00 17 01 00 00 0f]       "gomb noun"
+
+219. 1 entry, verb = "degomb", synonyms = "disgomb", "out", "outside"
+    [00 19 0f]                "degomb"
+
+218. 2 entries, verb = "dap"
+    [00 56 01 00 00 0f]       "dap noun"
+    [00 56 42 48 06 01 00 00 0f] "dap fosken noun"
+
+217. 8 entries, verb = "rike"
+    [00 7c 01 00 00 0f]       "rike noun"
+    [00 25 01 00 00 42 48 72 0f] "rike noun gemmly"
+    [00 26 01 00 00 42 45 6c 0f] "rike noun bommly"
+    [00 25 01 00 00 42 4e ab 42 48 72 0f] "rike noun to gemmly"
+    [00 26 01 00 00 42 4e ab 42 45 6c 0f] "rike noun to bommly"
+    [00 25 42 48 72 01 00 00 0f] "rike gemmly noun"
+    [00 26 42 45 6c 01 00 00 0f] "rike bommly noun"
+    [00 48 01 00 00 42 4e ab 01 00 07 0f] "rike noun to special"
+
+216. 1 entry, verb = "abvate"
+    [00 16 01 00 01 42 45 1b 01 00 06 0f] "abvate held at creature"
+
+215. 1 entry, verb = "leil"
+    [00 2b 01 00 01 0f]       "leil held"
+
+214. 1 entry, verb = "zarf"
+    [00 3f 0f]                "zarf"
+
+213. 1 entry, verb = "zrblm"
+    [00 2f 0f]                "zrblm"
+
+212. 2 entries, verb = "xyzzy"
+    [00 3a 0f]                "xyzzy"
+    [00 3b 42 4b d2 01 00 00 0f] "xyzzy over noun"
+
+211. 1 entry, verb = "in", synonyms = "inside"
+    [00 6e 0f]                "in"
+
+210. 1 entry, verb = "b", synonyms = "bal"
+    [00 2c 0f]                "b"
+
+209. 1 entry, verb = "d", synonyms = "da"
+    [00 2d 0f]                "d"
+
+208. 2 entries, verb = "frotz", synonyms = "gimble", "gyre", "outgribe",
+                                           "plugh", "rezrov", "zork"
+    [00 40 0f]                "frotz"
+    [00 40 01 00 00 0f]       "frotz noun"
+
+207. 1 entry, verb = "distim"
+    [00 63 01 00 06 0f]       "distim creature"
+
+206. 2 entries, verb = "smib"
+    [00 6f 0f]                "smib"
+    [00 6f 62 49 80 72 4e ab 52 49 92 01 00 00 0f] "smib in / to / into noun"
+
+205. 2 entries, verb = "cren"
+    [00 5f 01 00 00 0f]       "cren noun"
+    [00 5f 01 00 00 62 49 80 52 49 92 01 00 00 0f] "cren noun in / into noun"
+
+204. 1 entry, verb = "tund"
+    [00 70 85 3a a9 0f]       "tund scope = [parse $3aa9]"
+
+203. 1 entry, verb = "malk"
+    [00 60 01 00 00 0f]       "malk noun"
+
+202. 1 entry, verb = "durch"
+    [00 62 01 00 00 0f]       "durch noun"
+
+201. 2 entries, verb = "statch"
+    [00 71 0f]                "statch"
+    [00 71 01 00 00 0f]       "statch noun"
+
+200. 1 entry, verb = "flome"
+    [00 64 0f]                "flome"
+
+199. 1 entry, verb = "vold"
+    [00 66 01 00 06 0f]       "vold creature"
+
+198. 2 entries, verb = "vorl"
+    [00 72 0f]                "vorl"
+    [00 72 01 00 00 0f]       "vorl noun"
+
+197. 1 entry, verb = "smarch"
+    [00 65 0f]                "smarch"
+
+196. 1 entry, verb = "distunk"
+    [00 73 01 00 00 0f]       "distunk noun"
+
+195. 5 entries, verb = "frike"
+    [00 74 0f]                "frike"
+    [00 74 83 3a cb 0f]       "frike noun = [parse $3acb]"
+    [00 74 62 45 1b 52 4e ab 83 3a cb 0f] "frike at / to noun = [parse $3acb]"
+    [00 74 62 45 1b 72 4e ab 72 49 80 52 49 92 01 00 00 0f] "frike at / to / in
+/ into noun"
+    [00 74 42 4b b7 42 4b 78 01 00 00 0f] "frike out of noun"
+
+194. 1 entry, verb = "beckle"
+    [00 75 0f]                "beckle"
+
+193. 2 entries, verb = "tim", synonyms = "tophth"
+    [00 76 0f]                "tim"
+    [00 76 01 00 00 0f]       "tim noun"
+
+192. 1 entry, verb = "gask"
+    [00 61 01 00 00 0f]       "gask noun"
+
+191. 1 entry, verb = "disgask"
+    [00 77 0f]                "disgask"
+
+190. 1 entry, verb = "boltep"
+    [00 5e 01 00 00 0f]       "boltep noun"
+
+189. 1 entry, verb = "deave"
+    [00 67 0f]                "deave"
+
+188. 1 entry, verb = "discren"
+    [00 78 01 00 00 0f]       "discren noun"
+
+187. 1 entry, verb = "become"
+    [00 79 62 4f 7a 52 4f 83 0f] "become warb / warbs"
+
+186. 3 entries, verb = "nurl"
+    [00 68 0f]                "nurl"
+    [00 53 62 45 1b 52 4e ab 01 00 06 42 44 c1 85 3a a9 0f] "nurl at / to
+creature about scope = [parse $3aa9]"
+    [04 53 42 44 c1 85 3a a9 62 45 1b 52 4e ab 01 00 06 0f] "nurl about scope =
+[parse $3aa9] at / to creature" REVERSE
+
+185. 1 entry, verb = "jallon"
+    [00 7d 0f]                "jallon"
+
+    **** Verb action routines ****
+
+  Action table entries = 126
+
+action# action-routine "verb..."
+
+  0.  93d8  "nouns"
+  1.  b104  "die"
+  2.  b114  "restart"
+  3.  b12c  "restore"
+  4.  b144  "save"
+  5.  b174  "verify"
+  6.  b18c  "script"
+            "script on"
+  7.  b1c4  "script off"
+            "noscript"
+  8.  b1fc  
+  9.  b208  
+ 10.  a38c  "places"
+ 11.  a394  "objects"
+ 12.  a2e8  "score"
+ 13.  b354  "full"
+            "full score"
+ 14.  b3d0  "m"
+ 15.  b6c8  "rask multi"
+ 16.  b750  "disrask multiheld"
+            "pob multiheld"
+            "pob gronk multiheld"
+            "pob multiheld gronk"
+ 17.  b6f4  "rask multiinside from noun"
+            "rask multiinside off noun"
+ 18.  b7b0  "pob multiexcept on / onto / fosken noun"
+ 19.  b8a4  "pob multiexcept in / into / gronk noun"
+            "motch noun with multiexcept" REVERSE
+ 20.  b9d4  
+ 21.  bab4  "fargish held at creature"
+ 22.  baf0  "abvate held at creature"
+ 23.  bb2c  "pell noun"
+            "pell at / to noun"
+            "pell into / in / inside / through noun"
+            "gomb noun"
+ 24.  bc10  
+ 25.  bc28  "pell out / outside"
+            "degomb"
+ 26.  bc94  "pell"
+ 27.  bca4  "pell noun = [parse $3acb]"
+            "pell at / to noun = [parse $3acb]"
+ 28.  bfac  "brief"
+ 29.  bfbc  "long"
+ 30.  bfcc  "short"
+ 31.  c040  "r"
+            "t deave"
+ 32.  c178  "t noun"
+ 33.  c1cc  "t under noun"
+ 34.  c1e0  "t inside / in / into / through noun"
+ 35.  c27c  "dislello noun with held"
+            "reggle noun with held"
+ 36.  c2cc  "roggle noun with held"
+ 37.  c32c  "rike noun gemmly"
+            "rike noun to gemmly"
+            "rike gemmly noun"
+ 38.  c368  "rike noun bommly"
+            "rike noun to bommly"
+            "rike bommly noun"
+ 39.  c3a4  "dislello noun"
+ 40.  c410  "lello noun"
+ 41.  c44c  "disnarb held"
+ 42.  c47c  "narb held"
+ 43.  c4c8  "leil held"
+ 44.  c510  "b"
+ 45.  c518  "d"
+ 46.  c520  
+ 47.  c52c  "zrblm"
+ 48.  c538  
+ 49.  c544  
+ 50.  c89c  
+ 51.  c564  
+ 52.  c570  
+ 53.  c57c  
+ 54.  c588  
+ 55.  c69c  
+ 56.  c594  
+ 57.  c5a0  
+ 58.  c5ac  "xyzzy"
+ 59.  c5b8  "xyzzy over noun"
+ 60.  c5c4  
+ 61.  c5d0  
+ 62.  c5dc  
+ 63.  c5e8  "zarf"
+ 64.  c5f4  "frotz"
+            "frotz noun"
+ 65.  c600  
+ 66.  c878  "glake noun"
+ 67.  c60c  
+ 68.  c618  
+ 69.  c624  
+ 70.  c630  
+ 71.  c63c  
+ 72.  c648  "rike noun to special"
+ 73.  c654  
+ 74.  c6cc  
+ 75.  c6e8  
+ 76.  c724  
+ 77.  c760  
+ 78.  c7b0  
+ 79.  c7fc  
+ 80.  c81c  "pob held at / against / on / onto noun"
+ 81.  c8e0  
+ 82.  c8c8  
+ 83.  c900  "doatch at / to creature about scope = [parse $3aa9]"
+            "doatch about scope = [parse $3aa9] at / to creature" REVERSE
+            "nurl at / to creature about scope = [parse $3aa9]"
+            "nurl about scope = [parse $3aa9] at / to creature" REVERSE
+ 84.  c660  
+ 85.  c66c  
+ 86.  c678  "dap noun"
+            "dap fosken noun"
+ 87.  c79c  "z"
+ 88.  c684  
+ 89.  c690  "r up topic in noun"
+ 90.  c914  
+ 91.  bae4  
+ 92.  bb20  
+ 93.  b99c  
+ 94.  ea04  "boltep noun"
+ 95.  e7c8  "cren noun"
+            "cren noun in / into noun"
+ 96.  e7f0  "malk noun"
+ 97.  e9a8  "gask noun"
+ 98.  e808  "durch noun"
+ 99.  e798  "distim creature"
+100.  e850  "flome"
+101.  e8cc  "smarch"
+102.  e894  "vold creature"
+103.  ea2c  "pell deave"
+            "deave"
+104.  fa24  "nurl"
+105.  a420  "version"
+106.  eb18  "r noun"
+107.  b3c4  "m tall"
+108.  b3b8  "m wide"
+109.  b9cc  "thalen noun"
+110.  bc9c  "gomb"
+            "in"
+111.  e7c0  "smib"
+            "smib in / to / into noun"
+112.  e7e8  "tund scope = [parse $3aa9]"
+113.  e848  "statch"
+            "statch noun"
+114.  e8c4  "vorl"
+            "vorl noun"
+115.  e8e4  "distunk noun"
+116.  e8f8  "frike"
+            "frike noun = [parse $3acb]"
+            "frike at / to noun = [parse $3acb]"
+            "frike at / to / in / into noun"
+            "frike out of noun"
+117.  e908  "beckle"
+118.  e92c  "tim"
+            "tim noun"
+119.  e9f4  "disgask"
+120.  ea44  "discren noun"
+121.  ea8c  "become warb / warbs"
+122.  f9e0  "t scope = [parse $3aba]"
+123.  f9e8  "pell scope = [parse $3aba]"
+            "pell at / to / into / in / inside / through scope = [parse $3aba]"
+124.  f9fc  "rike noun"
+125.  fa38  "jallon"
+
+    **** Prepositions ****
+
+  Table entries = 0

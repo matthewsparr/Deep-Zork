@@ -1,0 +1,31 @@
+Story file is boothdye.z5
+
+    **** Parse tables ****
+
+  Verb entries = 91
+
+255. 1 entry, verb =  no-verb
+    [00 0c]                   "no-verb"
+
+254. 2 entries, verb =  no-verb
+    [00 0d]                   "no-verb"
+    [0f 00]                   "no-verb qb "
+
+253. 1 entry, verb =  no-verb
+    [00 01]                   "no-verb"
+
+252. 1 entry, verb =  no-verb
+    [00 03]                   "no-verb"
+
+251. 1 entry, verb =  no-verb
+    [00 02]                   "no-verb"
+
+250. 1 entry, verb =  no-verb
+    [00 05]                   "no-verb"
+
+249. 1 entry, verb =  no-verb
+    [00 04]                   "no-verb"
+
+248. 3 entries, verb =  no-verb
+    [00 06]                   "no-verb"
+    [0f 00]                   "no-verb qb "

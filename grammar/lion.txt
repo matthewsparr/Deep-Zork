@@ -1,0 +1,193 @@
+Story file is lion.z5
+
+    **** Parse tables ****
+
+  Verb entries = 21
+
+255. 1 entry, verb = "block"
+    [00 66 01 00 00 0f]       "block noun"
+
+254. 1 entry, verb = "cut", synonyms = "flay"
+    [00 62 01 00 00 0f]       "cut noun"
+
+253. 1 entry, verb = "drink"
+    [00 6b 01 00 00 0f]       "drink noun"
+
+252. 1 entry, verb = "drop"
+    [00 11 01 00 00 0f]       "drop noun"
+
+251. 1 entry, verb = "enter"
+    [00 65 01 00 00 0f]       "enter noun"
+
+250. 1 entry, verb = "examine", synonyms = "x"
+    [00 15 01 00 00 0f]       "examine noun"
+
+249. 1 entry, verb = "exit", synonyms = "leave"
+    [00 6c 0f]                "exit"
+
+248. 1 entry, verb = "attack", synonyms = "hit", "smash", "stun"
+    [00 63 01 00 00 42 1c 83 01 00 00 0f] "attack noun with noun"
+
+247. 1 entry, verb = "i", synonyms = "inv", "inventory"
+    [00 6d 0f]                "i"
+
+246. 1 entry, verb = "kill"
+    [00 6a 01 00 00 0f]       "kill noun"
+
+245. 2 entries, verb = "l", synonyms = "look"
+    [00 00 0f]                "l"
+    [00 15 62 16 c8 52 18 f6 01 00 00 0f] "l at / in noun"
+
+244. 1 entry, verb = "move", synonyms = "push"
+    [00 67 01 00 00 0f]       "move noun"
+
+243. 1 entry, verb = "q", synonyms = "quit"
+    [00 37 0f]                "q"
+
+242. 1 entry, verb = "restart"
+    [00 39 0f]                "restart"
+
+241. 1 entry, verb = "scare"
+    [00 68 01 00 00 0f]       "scare noun"
+
+240. 1 entry, verb = "shout"
+    [00 68 42 16 c8 01 00 00 0f] "shout at noun"
+
+239. 1 entry, verb = "strangle"
+    [00 69 01 00 00 0f]       "strangle noun"
+
+238. 1 entry, verb = "acquire", synonyms = "get", "take"
+    [00 4e 01 00 00 0f]       "acquire noun"
+
+237. 1 entry, verb = "chuck", synonyms = "hurl", "throw"
+    [00 64 01 00 00 42 16 c8 01 00 00 0f] "chuck noun at noun"
+
+236. 1 entry, verb = "wait", synonyms = "z"
+    [00 57 0f]                "wait"
+
+235. 1 entry, verb = "verbs"
+    [00 6e 0f]                "verbs"
+
+    **** Verb action routines ****
+
+  Action table entries = 111
+
+action# action-routine "verb..."
+
+  0.  de38  "l"
+  1.  e740  
+  2.  e758  
+  3.  e78c  
+  4.  e7c0  
+  5.  e7cc  
+  6.  e7d8  
+  7.  e7e4  
+  8.  e500  
+  9.  c01c  
+ 10.  c00c  
+ 11.  c030  
+ 12.  e7f0  
+ 13.  e7fc  
+ 14.  e808  
+ 15.  e568  
+ 16.  e814  
+ 17.  cb18  "drop noun"
+ 18.  e644  
+ 19.  cfec  
+ 20.  d294  
+ 21.  e05c  "examine noun"
+            "l at / in noun"
+ 22.  d54c  
+ 23.  e820  
+ 24.  c2c0  
+ 25.  d518  
+ 26.  d1e0  
+ 27.  d63c  
+ 28.  cdbc  
+ 29.  c350  
+ 30.  e82c  
+ 31.  e838  
+ 32.  eb20  
+ 33.  e844  
+ 34.  e870  
+ 35.  dce8  
+ 36.  dcf8  
+ 37.  dd08  
+ 38.  e2c0  
+ 39.  e0ec  
+ 40.  e87c  
+ 41.  e888  
+ 42.  ec64  
+ 43.  c04c  
+ 44.  c040  
+ 45.  a40c  
+ 46.  e42c  
+ 47.  a414  
+ 48.  e890  
+ 49.  8490  
+ 50.  e89c  
+ 51.  e910  
+ 52.  eb6c  
+ 53.  e984  
+ 54.  cc14  
+ 55.  bf08  "q"
+ 56.  ca64  
+ 57.  bf18  "restart"
+ 58.  bf30  
+ 59.  e990  
+ 60.  bf48  
+ 61.  c214  
+ 62.  bfd0  
+ 63.  bf90  
+ 64.  e184  
+ 65.  e99c  
+ 66.  e9a8  
+ 67.  d23c  
+ 68.  e9b4  
+ 69.  e9c0  
+ 70.  e9cc  
+ 71.  e9d8  
+ 72.  e9e4  
+ 73.  ea18  
+ 74.  ea24  
+ 75.  ea30  
+ 76.  e3c4  
+ 77.  e35c  
+ 78.  ca24  "acquire noun"
+ 79.  ea3c  
+ 80.  ea48  
+ 81.  ea68  
+ 82.  ea74  
+ 83.  eb2c  
+ 84.  e244  
+ 85.  d62c  
+ 86.  bf78  
+ 87.  ebe0  "wait"
+ 88.  ebf4  
+ 89.  ec00  
+ 90.  ec20  
+ 91.  ec58  
+ 92.  e5b0  
+ 93.  e780  
+ 94.  e76c  
+ 95.  d230  
+ 96.  d288  
+ 97.  cf90  
+ 98.  f800  "cut noun"
+ 99.  f864  "attack noun with noun"
+100.  f958  "chuck noun at noun"
+101.  f838  "enter noun"
+102.  f7e4  "block noun"
+103.  f904  "move noun"
+104.  f920  "scare noun"
+            "shout at noun"
+105.  f93c  "strangle noun"
+106.  f8e8  "kill noun"
+107.  f81c  "drink noun"
+108.  f854  "exit"
+109.  f880  "i"
+110.  f974  "verbs"
+
+    **** Prepositions ****
+
+  Table entries = 0

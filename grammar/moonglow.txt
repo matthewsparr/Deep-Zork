@@ -1,0 +1,32 @@
+Story file is moonglow.z3
+
+    **** Parse tables ****
+
+  Verb entries = 14
+
+255. 1 entry, verb = "quit"
+    [00 00 00 00 00 00 00 07] "quit"
+
+254. 1 entry, verb = "get", synonyms = "take", "wear"
+    [01 02 00 00 00 00 00 02] "get MULTI"
+
+253. 1 entry, verb = "drop"
+    [01 03 00 00 00 00 00 08] "drop MULTIHELD"
+
+252. 1 entry, verb = "i", synonyms = "invent"
+    [00 00 00 00 00 00 00 09] "i"
+
+251. 1 entry, verb = "examin", synonyms = "x"
+    [01 00 00 00 00 00 00 0a] "examin NOUN"
+
+250. 1 entry, verb = "enter", synonyms = "go"
+    [01 00 00 00 00 00 00 00] "enter NOUN"
+
+249. 2 entries, verb = "l", synonyms = "look"
+    [00 00 00 00 00 00 00 01] "l"
+    [01 00 00 00 00 00 00 0a] "l NOUN"
+
+248. 1 entry, verb = "move", synonyms = "push"
+    [01 00 00 00 00 00 00 04] "move NOUN"
+
+247. 5 entries, verb = "draw", synonyms = "make"

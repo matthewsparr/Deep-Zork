@@ -1,0 +1,185 @@
+Story file is sh4.z5
+
+    **** Parse tables ****
+
+  Verb entries = 20
+
+255. 1 entry, verb = "die", synonyms = "q", "quit"
+    [00 01 0f]                "die"
+
+254. 1 entry, verb = "restore"
+    [00 03 0f]                "restore"
+
+253. 1 entry, verb = "restart"
+    [00 02 0f]                "restart"
+
+252. 1 entry, verb = "verify"
+    [00 05 0f]                "verify"
+
+251. 1 entry, verb = "save"
+    [00 04 0f]                "save"
+
+250. 3 entries, verb = "script", synonyms = "transcrip"
+    [00 06 0f]                "script"
+    [00 07 42 16 b0 0f]       "script off"
+    [00 06 42 16 b9 0f]       "script on"
+
+249. 1 entry, verb = "noscript", synonyms = "unscript"
+    [00 07 0f]                "noscript"
+
+248. 1 entry, verb = "version"
+    [00 5c 0f]                "version"
+
+247. 1 entry, verb = "a"
+    [00 5d 0f]                "a"
+
+246. 1 entry, verb = "b"
+    [00 5e 0f]                "b"
+
+245. 1 entry, verb = "c"
+    [00 5f 0f]                "c"
+
+244. 1 entry, verb = "d"
+    [00 60 0f]                "d"
+
+243. 1 entry, verb = "e"
+    [00 61 0f]                "e"
+
+242. 1 entry, verb = "f"
+    [00 62 0f]                "f"
+
+241. 1 entry, verb = "g"
+    [00 63 0f]                "g"
+
+240. 1 entry, verb = "h"
+    [00 64 0f]                "h"
+
+239. 1 entry, verb = "r"
+    [00 65 0f]                "r"
+
+238. 1 entry, verb = "flyer"
+    [00 66 0f]                "flyer"
+
+237. 1 entry, verb = "help"
+    [00 67 0f]                "help"
+
+236. 1 entry, verb = "note"
+    [00 68 0f]                "note"
+
+    **** Verb action routines ****
+
+  Action table entries = 105
+
+action# action-routine "verb..."
+
+  0.  5ea0  
+  1.  7cf0  "die"
+  2.  7d00  "restart"
+  3.  7d18  "restore"
+  4.  7d30  "save"
+  5.  7d48  "verify"
+  6.  7d60  "script"
+            "script on"
+  7.  7d98  "script off"
+            "noscript"
+  8.  7dd0  
+  9.  7ddc  
+ 10.  963c  
+ 11.  7f30  
+ 12.  7fac  
+ 13.  82a4  
+ 14.  832c  
+ 15.  82d0  
+ 16.  838c  
+ 17.  8480  
+ 18.  85b0  
+ 19.  8690  
+ 20.  86cc  
+ 21.  8708  
+ 22.  87ec  
+ 23.  8804  
+ 24.  8870  
+ 25.  8880  
+ 26.  8b84  
+ 27.  8b94  
+ 28.  8ba4  
+ 29.  8c18  
+ 30.  8d50  
+ 31.  8da4  
+ 32.  8db8  
+ 33.  8e54  
+ 34.  8ea4  
+ 35.  8f04  
+ 36.  8f40  
+ 37.  8f7c  
+ 38.  8fe8  
+ 39.  9024  
+ 40.  9054  
+ 41.  90a0  
+ 42.  90e8  
+ 43.  90f0  
+ 44.  90f8  
+ 45.  9104  
+ 46.  9110  
+ 47.  911c  
+ 48.  9474  
+ 49.  913c  
+ 50.  9148  
+ 51.  9154  
+ 52.  9160  
+ 53.  9274  
+ 54.  916c  
+ 55.  9178  
+ 56.  9184  
+ 57.  9190  
+ 58.  919c  
+ 59.  91a8  
+ 60.  91b4  
+ 61.  91c0  
+ 62.  91cc  
+ 63.  91d8  
+ 64.  9450  
+ 65.  91e4  
+ 66.  91f0  
+ 67.  91fc  
+ 68.  9208  
+ 69.  9214  
+ 70.  9220  
+ 71.  922c  
+ 72.  92a4  
+ 73.  92c0  
+ 74.  92fc  
+ 75.  9338  
+ 76.  9388  
+ 77.  93d4  
+ 78.  93f4  
+ 79.  94b8  
+ 80.  94a0  
+ 81.  94d8  
+ 82.  9238  
+ 83.  9244  
+ 84.  9250  
+ 85.  9374  
+ 86.  925c  
+ 87.  9268  
+ 88.  94ec  
+ 89.  86c0  
+ 90.  86fc  
+ 91.  8578  
+ 92.  6d90  "version"
+ 93.  ca5c  "a"
+ 94.  ca64  "b"
+ 95.  ca6c  "c"
+ 96.  ca88  "d"
+ 97.  caa4  "e"
+ 98.  cac0  "f"
+ 99.  cadc  "g"
+100.  caf8  "h"
+101.  cb14  "r"
+102.  cba8  "flyer"
+103.  cbcc  "help"
+104.  cbd4  "note"
+
+    **** Prepositions ****
+
+  Table entries = 0
