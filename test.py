@@ -11,13 +11,16 @@ import pstats
 
 game = text_game()
 a = game.agent
+a.epsilon_decay = 1
 
 pr = cProfile.Profile()
 pr.enable()
-game.run_game(agent=a, num_games=1, num_rounds=5, batch_size=50)
+game.run_game(agent=a, num_games=10, num_rounds=10, batch_size=2)
 pr.disable()
 ps = pstats.Stats(pr).sort_stats('time')
 ps.print_stats(30)
 
+s = game.story
 
+s.plot.line(x='Total_Moves', y='Score')
 

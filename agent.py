@@ -66,7 +66,7 @@ class DQNAgent:
             return True
         else:
             return False
-    def predict_actions(self, state_vectors, actions_vectors):
+    def predict_actions(self, state_vectors, actions_vectors, actions, banned_actions=[]):
         q_max = -np.math.inf
         best_action = 0
         
@@ -78,10 +78,11 @@ class DQNAgent:
 
             q = self.model_dot_state_action.predict([state_dense.reshape((1, len(state_dense))), 
                                                      action_dense.reshape((1, len(action_dense)))])[0][0]
-            if q > q_max:
+            if q > q_max and actions[i] not in banned_actions:
                 q_max = q
                 best_action = i
-        return best_action, q_max
+                print(best_action)
+        return actions[best_action], q_max
         
     def replay(self, batch_size):
         states = [None]*batch_size

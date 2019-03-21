@@ -47,17 +47,21 @@ class text_game:
         self.nlp = spacy.load('en_core_web_sm')
         
         self.tokenizer = None
-        self.vocab_size = 800
+        self.vocab_size = 1000
+        self.narrative_limit = 500
         
-        self.sleep_time = 0.01
+        self.sleep_time = 0.25
+        
         self.random_action_weight = 6
         self.random_action_basic_prob = 0.5
         self.random_action_low_prob = 0.2
         
-        self.game_score_weight = 30
+        self.score = 0
+        self.game_score = 0
+        self.game_score_weight = 100
         self.negative_per_turn_reward = 1
-        self.inventory_reward_value = 30
-        self.new_area_reward_value = 1
+        self.inventory_reward_value = 100
+        self.new_area_reward_value = 10
                 
         cmds = commands()
         self.basic_actions = cmds.basic_actions
@@ -71,8 +75,16 @@ class text_game:
         self.unique_narratives = set()
         self.unique_surroundings = dict()
         self.actions_probs_dict = dict()
-        self.story = pd.DataFrame(columns=['Surroundings', 'Inventory', 'Action', 'Response', 'Score', 'Moves'])
+        self.invalid_actions_dict = dict()
+        self.story = pd.DataFrame(columns=['Surroundings', 'Inventory', 'Action', 'Response', 'Reward', 'Reward_Type', 'Score', 'Moves', 'Total_Moves'])
         self.stories = []
+        
+        self.load_actions_probs_dict()
+        self.load_invalid_nouns()
+        self.load_invalid_actions_dict()
+        self.load_unique_surroundings()
+        self.init_word2vec()
+        self.init_tokenizer()
         
     def enqueue_output(self, out, queue):
         for line in iter(out.readline, b''):
@@ -80,12 +92,9 @@ class text_game:
         out.close()
 
     def start_game(self, game_file):
-        self.load_actions_probs_dict()
-        self.load_invalid_nouns()
-        self.load_unique_surroundings()
-        self.init_word2vec()
-        self.init_tokenizer()
-        
+        self.score = 0
+        self.unique_narratives = set()
+        self.game_score = 0
         self.p = Popen([self.emulator_file, game_file], stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
         self.q = Queue()
         self.t = Thread(target=self.enqueue_output, args=(self.p.stdout, self.q))
@@ -99,12 +108,26 @@ class text_game:
         self.save_invalid_nouns()
         self.save_unique_surroundings()
         self.save_actions_probs_dict()
+        self.save_invalid_actions_dict()
         self.kill_game()
         
     def kill_game(self):
+        self.save_invalid_nouns()
+        self.save_unique_surroundings()
+        self.save_actions_probs_dict()
         self.p.terminate()
         self.p.kill()
-
+        
+    def restart_game(self):
+        self.save_invalid_nouns()
+        self.save_unique_surroundings()
+        self.save_actions_probs_dict()
+        self.save_invalid_actions_dict()
+        self.perform_action('restart', self.p)
+        self.score = 0
+        self.unique_narratives = set()
+        self.game_score = 0
+        
     # read line without blocking
     def readLine(self, q):
         cont = True
@@ -229,7 +252,8 @@ class text_game:
         p.stdin.flush()
         sleep(self.sleep_time)## wait for action to register
         
-    def preprocess(self, text):
+    def preprocess(self, text, check_for_flavor_text=False):
+        
         # fix bad newlines (replace with spaces), unify quotes
         text = text.strip()
         text = text.replace('\\n', ' ').replace('‘', '\'').replace('’', '\'').replace('”', '"').replace('“', '"')
@@ -239,8 +263,15 @@ class text_game:
         text = self.compiled_expression.sub('', text)
         # split numbers into digits to avoid infinite vocabulary size if random numbers are present:
         #text = re.sub('[0-9]', ' \g<0> ', text)
+        
+        ## remove problematic flavor text
+        if check_for_flavor_text:
+            flavor_text = 'you hear in the distance the chirping of a song bird'
+            if (flavor_text in text):
+                text = text.replace(flavor_text, '')
+        
         # expand unambiguous 'm, 't, 're, ... expressions
-        text = text.replace('\'m ', ' am ').replace('\'re ', ' are ').replace('won\'t', 'will not').replace('n\'t', ' not').replace('\'ll ', ' will ').replace('\'ve ', ' have ').replace('\'s', ' \'s')
+        #text = text.replace('\'m ', ' am ').replace('\'re ', ' are ').replace('won\'t', 'will not').replace('n\'t', ' not').replace('\'ll ', ' will ').replace('\'ve ', ' have ').replace('\'s', ' \'s')
         return text
     def vectorize_text(self, text, tokenizer):
         words = word_tokenize(text)
@@ -252,36 +283,33 @@ class text_game:
         padded = pad_sequences([sent], maxlen=50, padding='post')
         return (padded)
     
-    def calculate_reward(self, story, moves_count, new_narrative):
+    def calculate_reward(self, inventory, old_inventory, moves_count, new_narrative, round_score):
         reward = 0
-
+        reward_msg = ''
         ## add reward from score in game
         if(moves_count != 0):
-            new_score = int(story['Score'][moves_count]) - int(story['Score'][moves_count-1])
-            reward = reward + new_score*self.game_score_weight
-            if (new_score > 0):
-                print('Scored ' + str(new_score) + ' points in game.')
-
+            reward = reward + round_score*self.game_score_weight
+            if (round_score > 0):
+                print('Scored ' + str(round_score) + ' points in game.')
+                reward_msg += ' game score: ' + str(round_score) + ' '
         ## add small negative reward for each move
         reward = reward - self.negative_per_turn_reward
 
         ## add reward for picking up / using items
         if(moves_count != 0):
-            pre_inventory = story['Inventory'][moves_count-1]
-            inventory = story['Inventory'][moves_count]
-            
-            if (pre_inventory != inventory) and ('chirping' not in inventory):  ## inventory changed, ignoring chirping bird line
+            if  inventory.strip().lower() not in old_inventory.strip().lower():  ## inventory changed, ignoring chirping bird line
                 reward = reward + self.inventory_reward_value
                 print('inventory changed')
-
+                reward_msg += ' inventory score (' + old_inventory + " --- " + inventory + ')'
 
         ## add reward for discovering new areas
-        if new_narrative not in self.unique_narratives:  ## new location
+        if new_narrative.strip() not in self.unique_narratives:  ## new location
             reward = reward + self.new_area_reward_value
             self.unique_narratives.add(new_narrative)
-            print('discovered new area')
+            reward_msg += ' new area score ---' + new_narrative.strip()
+
         print('Rewarded: ' + str(reward) + ' points.')
-        return reward
+        return reward, reward_msg
 
     def detect_invalid_nouns(self, action_response):
         ## detect and remove invalid nouns from future turns
@@ -291,7 +319,7 @@ class text_game:
             word = action_response[startIndex+1:endIndex]
             print('Didn\'t know the word: ' + word)
             self.invalid_nouns.append(word)
-            
+
     def save_actions_probs_dict(self):
         ## save invalid nouns to pickled list
         try:
@@ -306,6 +334,23 @@ class text_game:
             with open ('actions_probs_dict.txt', 'rb') as fp:
                 n = pickle.load(fp)
                 self.actions_probs_dict.extend(n)
+        except:
+            pass
+        
+    def save_invalid_actions_dict(self):
+        ## save invalid nouns to pickled list
+        try:
+            with open('invalid_actions_dict.txt', 'wb') as fp:
+                pickle.dump(self.invalid_actions_dict, fp)
+        except:
+            pass
+    
+    def load_invalid_actions_dict(self):
+        ## load previously found invalid nouns from pickled list
+        try:
+            with open ('invalid_actions_dict.txt', 'rb') as fp:
+                n = pickle.load(fp)
+                self.invalid_actions_dict.extend(n)
         except:
             pass
         
@@ -361,26 +406,39 @@ class text_game:
         pbar.start()
         for game_number in range(0, num_games):
             self.start_game('zork1.z5')
+            new_narrative = ''
+            inventory = ''
+            already_tried_actions = []
             try:
                 for i in range(0, num_rounds):
-                    ## Check surroundings, check inventory, choose action, check action response
-                    narrative,score,moves = self.readLine(self.q)
-                    self.check_inventory(self.p)
-                    inventory,s,m = self.readLine(self.q)
-                    ## if first round need to re-check surroundings to get initial environment
+                    
                     if (i==0):
+                        ## Check surroundings, check inventory, choose action, check action response
+                        narrative,score,moves = self.readLine(self.q)
+                        narrative = self.preprocess(narrative)
+                        self.check_inventory(self.p)
+                        inventory,s,m = self.readLine(self.q)
+                        self.unique_narratives.add(narrative)
+                    else:
+                        narrative = new_narrative
+                        
+                    if narrative in self.invalid_actions_dict:
+                        already_tried_actions = self.invalid_actions_dict[narrative]
+                    
+                    if len(narrative) > self.narrative_limit:
+                        print('encountered bug')
                         self.look_surroundings(self.p)
                         narrative,score,moves = self.readLine(self.q)
                         narrative = self.preprocess(narrative)
-                    else: 
-                        narrative = self.preprocess(narrative)
-                        
+                        self.check_inventory(self.p)
+                        inventory,s,m = self.readLine(self.q)
+                    
                     ## check if data stored in history about this environment
                     if (narrative in self.actions_probs_dict):
                         actions, probs, narrativeVector, actionsVectors = self.actions_probs_dict.get(narrative)
                     else:
+                        print(narrative)
                         nouns = self.get_nouns(narrative)
-                        
                         # build action space
                         current_action_space = self.generate_action_tuples(nouns)
                         action_space = set()
@@ -396,70 +454,95 @@ class text_game:
                             actionsVectors.append(self.vectorize_text(a,self.tokenizer))
                         self.actions_probs_dict[narrative] = actions,probs,narrativeVector,actionsVectors
                     
-                    print(narrative)
                     ## decide which type of action to perform
-                    if (agent.act_random() or i < 10): ## choose random action
-                        print('random choice:')
-                        action = self.select_one(actions, probs)
-                    else: ## choose predicted max Q value action
-                        print('predicted choice:')
-                        best_action, max_q = agent.predict_actions(narrativeVector, actionsVectors)
-                        action = actions[best_action]
+                    ## if chosen action has invalid noun, repick 
+                    
+                    
+                    validNounFlag = True
+                    nonRepeatedActionFlag = True
+                    while(validNounFlag and nonRepeatedActionFlag):
+                        if (agent.act_random()): ## choose random action
+                            print('random choice:')
+                            action = self.select_one(actions, probs)
+                            
+                        else: ## choose predicted max Q value action
+                            print('predicted choice:')
+
+                            action, max_q = agent.predict_actions(narrativeVector, actionsVectors, 
+                                                                  actions, already_tried_actions)
+                        
+                        nonRepeatedActionFlag = False
+                        if action in already_tried_actions:
+                            nonRepeatedActionFlag = False
+                            print(already_tried_actions)
+                            break
+                        validNounFlag = False
+                        for noun in self.invalid_nouns:
+                            if noun in action:
+                                validNounFlag = True
+                                break
                     print('-- ' + action + ' --')
     
                     ## perform selected action
                     self.perform_action(action, self.p)
     
                     ## grab response from action
-                    response,score,moves = self.readLine(self.q)
+                    response,current_score,moves = self.readLine(self.q)
                     response = self.preprocess(response)
                     
                     ## check for invalid nouns
                     self.detect_invalid_nouns(response)
-                    
-                    ## update story dataframe
-                    self.story.loc[(i + game_number*num_rounds)] = [narrative, inventory, action, response, str(s), str(i+1)]
-                    
-                    ## update unique narratives set
-                    self.unique_narratives.add(narrative)
-    
+
                     ## vectorize selected action
                     actionVector = self.vectorize_text(action,self.tokenizer)
     
                     ## check new surroundings after performing action
                     self.look_surroundings(self.p)
                     new_narrative,s,m = self.readLine(self.q)
-                    new_narrative = self.preprocess(new_narrative)
+                    new_narrative = self.preprocess(new_narrative, check_for_flavor_text=True)
                     new_narrativeVector = self.vectorize_text(new_narrative, self.tokenizer)
+                    
+                    ## check inventory after performing action
+                    self.check_inventory(self.p)
+                    old_inventory = inventory
+                    inventory,s,m = self.readLine(self.q)
+                    inventory = self.preprocess(inventory, check_for_flavor_text=True)
     
                     ## get reward
-                    reward = self.calculate_reward(self.story, i, new_narrative)
+                    round_score = current_score - self.game_score
+                    reward, reward_msg = self.calculate_reward(inventory, old_inventory, i, new_narrative, round_score)
     
                     ## remember round data
                     agent.remember(narrativeVector, actionVector, reward, new_narrativeVector, False)
-    
-                    ## check new surroundings
-                    self.look_surroundings(self.p)
-    
+                    
+                    ## update story dataframe
+                    self.score += reward
+                    total_round_number = i + game_number*num_rounds
+                    self.story.loc[total_round_number] = [narrative, old_inventory, action, response, reward, reward_msg, self.score, str(i), total_round_number]
+                    
+                    
+                    ## remember already tried actions that don't change current game state
+                    if(new_narrative.strip() in narrative.strip()) and (inventory.strip() in old_inventory.strip()):
+                        already_tried_actions.append(action)
+                        self.invalid_actions_dict[narrative] = already_tried_actions
+                        self.save_invalid_actions_dict()
+                                            
                     ## if enough experiences in batch, replay 
-                    if i%self.batch_size == 0 and i>0:  
+                    if (i+1)%self.batch_size == 0 and i>0:  
                         print('Training on mini batch')
                         self.agent.replay(self.batch_size)
+                        sleep(self.sleep_time)
                         
                     ## update progress bar
                     pbar.update(i + (game_number)*num_rounds) 
                     
-                self.end_game()
+                self.restart_game()
             except Exception as e:
                 print('exception')
                 traceback.print_tb(e.__traceback__)
-                self.kill_game()
+                self.restart_game()
                 #print(e.with_traceback())
             pbar.finish()
-            try:
-                self.kill_game()
-            except:
-                print('finished - killing game')
             self.stories.append(self.story)
-        return self.story
+        return True
 
