@@ -50,7 +50,7 @@ class text_game:
         
         self.tokenizer = None
         self.vocab_size = 1200
-        self.state_limit = 800
+        self.state_limit = 1000
         
         self.sleep_time = 0.05
         
@@ -60,11 +60,12 @@ class text_game:
         
         self.score = 0
         self.game_score = 0
-        self.game_score_weight = 100
+        self.game_score_weight = 10
         self.negative_per_turn_reward = 1
-        self.inventory_reward_value = 100
+        self.inventory_reward_value = 50
         self.new_area_reward_value = 20
         self.moving_around_reward_value = 0.5
+        self.inventory_not_new_reward_value = 0.5
                 
         cmds = commands()
         self.basic_actions = cmds.basic_actions
@@ -85,6 +86,7 @@ class text_game:
         self.init_word2vec()
         self.init_tokenizer()
         
+        self.unique_inventory_changes = set()
         self.state_data = pd.DataFrame(columns=['State', 'StateVector', 'ActionData'])
         
     def load_state_data(self):
@@ -130,6 +132,7 @@ class text_game:
         self.readLine()
         self.score = 0
         self.unique_state = set()
+        self.unique_inventory_changes = set()
         self.game_score = 0
         
     # read line without blocking
@@ -218,7 +221,7 @@ class text_game:
                         action_to_add = action_to_add.replace('DCT', perm[1])
                         possible_actions.append(action_to_add)
                         try:
-                            similarities.append(self.word_2_vec.similarity(word_tokenize(action_to_add)[0], i))
+                            similarities.append(self.word_2_vec.similarity(word_tokenize(action_to_add.strip(i))[0], i).mean())
                         except:
                             similarities.append(self.random_action_low_prob)
 
@@ -309,15 +312,20 @@ class text_game:
                 print('Scored ' + str(round_score) + ' points in game.')
                 reward_msg += ' game score: ' + str(round_score) + ' '
         ## add small negative reward for each move
+        
         reward = reward - self.negative_per_turn_reward
-
+        
         ## add reward for picking up / using items
         if(moves_count != 0):
-            if  inventory.strip().lower() not in old_inventory.strip().lower():  ## inventory changed, ignoring chirping bird line
-                reward = reward + self.inventory_reward_value
-                print('inventory changed')
-                reward_msg += ' inventory score (' + old_inventory + " --- " + inventory + ')'
-
+            if  inventory.strip().lower() not in old_inventory.strip().lower(): ## inventory changed, ignoring chirping bird line
+                ## keep track of unique inventory changes to prevent picking up and dropping items constantly
+                if (old_inventory + ' - ' + inventory) not in self.unique_inventory_changes:
+                    self.unique_inventory_changes.add(old_inventory + ' - ' + inventory)
+                    reward = reward + self.inventory_reward_value
+                    print('inventory changed - new')
+                    reward_msg += ' inventory score (' + old_inventory + " --- " + inventory + ')'
+                else:
+                    reward = reward + self.inventory_not_new_reward_value
         ## add reward for discovering new areas
         if new_state.strip() not in self.unique_state:  ## new location
             reward = reward + self.new_area_reward_value
@@ -387,6 +395,63 @@ class text_game:
           #  self.load_tokenizer()
         #except EOFError:
         self.tokenizer = Tokenizer(num_words=self.vocab_size)
+        
+    def get_data(self, state, ):
+        ## if we have generated actions before for state, load them, otherwise generate actions
+        if (state in list(self.state_data['State'])):
+            state_vector = list(self.state_data[self.state_data['State'] == state]['StateVector'])[0][0]
+            try:
+                actionsVectors = []
+                actions = []
+                probs = []
+                action_dict = list(self.state_data[self.state_data['State'] == state]['ActionData'])[0]
+                for act, data in action_dict.items():
+                    actions.append(act)
+                    probs.append(data[0])
+                    actionsVectors.append(data[1])
+                probs = np.array(probs)
+            except:
+                actionsVectors = []
+                actions = []
+                probs = []
+                action_dict = list(self.state_data[self.state_data['State'] == state]['ActionData'])[0][0]
+                for act, data in action_dict.items():
+                    actions.append(act)
+                    probs.append(data[0])
+                    actionsVectors.append(data[1])
+                probs = np.array(probs)
+        else: 
+    
+            state_vector = self.vectorize_text(state,self.tokenizer)
+            ## get nouns from state
+            nouns = self.get_nouns(state)
+            # build action space and probabilities 
+            current_action_space = self.generate_action_tuples(nouns)
+            action_space = set()
+            action_space, probs = self.add_to_action_space(action_space, current_action_space)
+            actions = []
+            for a in action_space:
+                actions.append(a)
+            probs = np.array(probs)
+            actionsVectors = []
+            for a in actions:
+                actionsVectors.append(self.vectorize_text(a,self.tokenizer))
+            ## create action dictionary
+            action_dict = dict()
+            for idx, act in enumerate(actions):
+                action_dict[act] = (probs[idx], actionsVectors[idx])
+            ## store state data 
+            row = len(self.state_data)
+            self.state_data.loc[row, 'State'] = state
+            self.state_data.loc[row, 'StateVector'] = [state_vector]
+            self.state_data.loc[row, 'ActionData'] = [action_dict]
+        return probs, actions, state_vector, actionsVectors, action_dict
+    
+    def perform_selected_action(self, action):
+        self.perform_action(action)
+        response,current_score,moves = self.readLine()
+        response = self.preprocess(response)
+        return response, current_score, moves
 
     def run_game(self, agent, num_games, num_rounds, batch_size):
         ## set global batch size
@@ -421,61 +486,14 @@ class text_game:
                         print('encountered line read bug')
                         state, old_surroundings, old_inventory, _, _, = self.get_state()
                         
-                    ## if we have generated actions before for state, load them, otherwise generate actions
-                    if (state in list(self.state_data['State'])):
-                        state_vector = list(self.state_data[self.state_data['State'] == state]['StateVector'])[0][0]
-                        try:
-                            actionsVectors = []
-                            actions = []
-                            probs = []
-                            action_dict = list(self.state_data[self.state_data['State'] == state]['ActionData'])[0]
-                            for act, data in action_dict.items():
-                                actions.append(act)
-                                probs.append(data[0])
-                                actionsVectors.append(data[1])
-                            probs = np.array(probs)
-                        except:
-                            actionsVectors = []
-                            actions = []
-                            probs = []
-                            action_dict = list(self.state_data[self.state_data['State'] == state]['ActionData'])[0][0]
-                            for act, data in action_dict.items():
-                                actions.append(act)
-                                probs.append(data[0])
-                                actionsVectors.append(data[1])
-                            probs = np.array(probs)
-                    else: 
-
-                        state_vector = self.vectorize_text(state,self.tokenizer)
-                        ## get nouns from state
-                        nouns = self.get_nouns(state)
-                        # build action space and probabilities 
-                        current_action_space = self.generate_action_tuples(nouns)
-                        action_space = set()
-                        action_space, probs = self.add_to_action_space(action_space, current_action_space)
-                        actions = []
-                        for a in action_space:
-                            actions.append(a)
-                        probs = np.array(probs)
-                        actionsVectors = []
-                        for a in actions:
-                            actionsVectors.append(self.vectorize_text(a,self.tokenizer))
-                        ## create action dictionary
-                        action_dict = dict()
-                        for idx, act in enumerate(actions):
-                            action_dict[act] = (probs[idx], actionsVectors[idx])
-                        ## store state data 
-                        row = len(self.state_data)
-                        self.state_data.loc[row, 'State'] = state
-                        self.state_data.loc[row, 'StateVector'] = [state_vector]
-                        self.state_data.loc[row, 'ActionData'] = [action_dict]
+                    ## get data for current state
+                    probs, actions, state_vector, actionsVectors, action_dict = self.get_data(state)
                     
                     ## decide which type of action to perform
                     if (agent.act_random()): ## choose random action
                         print('random choice:')
                         probs_norm = probs/(probs.sum())
-                        action = self.select_one(actions, probs_norm)
-                        
+                        action = self.select_one(actions, probs_norm)       
                     else: ## choose predicted max Q value action
                         print('predicted choice:')
                         action = agent.predict_actions(state_vector, action_dict)
@@ -483,9 +501,7 @@ class text_game:
                     print('-- ' + action + ' --')
     
                     ## perform selected action
-                    self.perform_action(action)
-                    response,current_score,moves = self.readLine()
-                    response = self.preprocess(response)
+                    response, current_score, moves = self.perform_selected_action(action)
                     
                     ## check for invalid nouns
                     invalid_noun = self.detect_invalid_nouns(response)
@@ -494,7 +510,7 @@ class text_game:
                     action_vector = self.vectorize_text(action,self.tokenizer)
     
                     ## check new state after performing action
-                    new_state, surroundings, inventory, score, moves = self.get_state()
+                    new_state, surroundings, inventory, current_score, moves = self.get_state()
                     new_state = self.preprocess(new_state)
                     new_state_vector = self.vectorize_text(new_state, self.tokenizer)
                     

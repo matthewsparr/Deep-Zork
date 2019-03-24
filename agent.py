@@ -17,7 +17,7 @@ class DQNAgent:
         self.epsilon_min = 0.01
         self.epsilon_decay = 0.998
         self.learning_rate = 0.001
-        self.vocab_size = 500
+        self.vocab_size = 1200
         self.model = self._build_model()
     def _build_model(self):
         # Neural Net for Deep-Q learning Model
@@ -56,13 +56,13 @@ class DQNAgent:
         model = Model(inputs=[model_state.input, model_action.input], 
                       outputs=model_dot_state_action([model_state.output, model_action.output]))
 
-        model.compile(optimizer='Adam', loss='mse')
+        model.compile(optimizer='RMSProp', loss='mse')
         return model
     def remember(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
     def act_random(self):
         ## decides to perform either a random action or an action with the highest Q value
-        if np.random.rand() <= self.epsilon:
+        if np.random.rand() <= self.epsilon:    
             return True
         else:
             return False
