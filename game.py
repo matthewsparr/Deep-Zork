@@ -20,7 +20,6 @@ from keras.preprocessing.text import Tokenizer
 import pandas as pd
 from time import sleep
 import traceback
-import json
 
 
 class text_game:
@@ -55,8 +54,8 @@ class text_game:
         self.sleep_time = 0.05
         
         self.random_action_weight = 6
-        self.random_action_basic_prob = 0.5
-        self.random_action_low_prob = 0.2
+        self.random_action_basic_prob = 0.4
+        self.random_action_low_prob = 0.1
         
         self.score = 0
         self.game_score = 0
@@ -75,6 +74,7 @@ class text_game:
         self.action_space = cmds.action_space
         self.filtered_tokens = cmds.filtered_tokens
         self.invalid_nouns = [] 
+        self.valid_nouns = []
         
         self.unique_state = set()
         self.actions_probs_dict = dict()
@@ -83,17 +83,18 @@ class text_game:
         self.stories = []
         
         self.load_invalid_nouns()
+        self.load_valid_nouns()
         self.init_word2vec()
         self.init_tokenizer()
         
         self.unique_inventory_changes = set()
-        self.state_data = pd.DataFrame(columns=['State', 'StateVector', 'ActionData'])
+        self.state_data = pd.DataFrame(columns=['State', 'StateVector', 'ActionData', 'Nouns'])
         
     def load_state_data(self):
         try:
             self.state_data = pd.read_pickle('state_data.pickle')
         except:
-            self.state_data = pd.DataFrame(columns=['State', 'StateVector', 'ActionData'])
+            self.state_data = pd.DataFrame(columns=['State', 'StateVector', 'ActionData', 'Nouns'])
     def enqueue_output(self, out, queue):
         for line in iter(out.readline, b''):
             queue.put(line)
@@ -116,16 +117,19 @@ class text_game:
     
     def end_game(self):
         self.save_invalid_nouns()
+        self.save_valid_nouns()
         self.save_tokenizer()
         self.kill_game()
         
     def kill_game(self):
         self.save_invalid_nouns()
+        self.save_valid_nouns()
         self.p.terminate()
         self.p.kill()
         
     def restart_game(self):
         self.save_invalid_nouns()
+        self.save_valid_nouns()
         self.perform_action('restart')
         self.readLine()
         self.perform_action('y')
@@ -134,6 +138,9 @@ class text_game:
         self.unique_state = set()
         self.unique_inventory_changes = set()
         self.game_score = 0
+        
+    def save_model_weights(self):
+        self.agent.model.save_weights('dqn_model_weights.h5')
         
     # read line without blocking
     def readLine(self):
@@ -190,12 +197,12 @@ class text_game:
         matcher.add('Noun phrase', None, [{POS: 'NOUN'}])
         doc = self.nlp(state)
         matches = matcher(doc)
-        noun_list = []
+        noun_set = set()
         for id, start, end in matches:
             noun = doc[start:end].text
             if noun not in self.directions and noun not in self.invalid_nouns:
-                noun_list.append(noun)
-        return(noun_list)
+                noun_set.add(noun)
+        return(noun_set)
         
     def generate_action_tuples(self, nouns):
         possible_actions = []
@@ -361,7 +368,7 @@ class text_game:
         try:
             with open ('tokenizer.pickle', 'rb') as fp:
                 n = pickle.load(fp)
-                self.tokenizer.extend(n)
+                self.tokenizer = n
         except:
             pass        
             
@@ -381,6 +388,23 @@ class text_game:
                 self.invalid_nouns.extend(n)
         except:
             pass
+        
+    def save_valid_nouns(self):
+        ## save invalid nouns to pickled list
+        try:
+            with open('valid_nouns.txt', 'wb') as fp:
+                pickle.dump(self.valid_nouns, fp)
+        except:
+            pass
+    
+    def load_valid_nouns(self):
+        ## load previously found invalid nouns from pickled list
+        try:
+            with open ('invalid_nouns.txt', 'rb') as fp:
+                n = pickle.load(fp)
+                self.valid_nouns.extend(n)
+        except:
+            pass
     
     def init_word2vec(self):
         #model = Word2Vec.load('tutorial.model')
@@ -391,15 +415,19 @@ class text_game:
         return w2v
         
     def init_tokenizer(self):
-        #try: 
-          #  self.load_tokenizer()
-        #except EOFError:
+       # try: 
+        #    self.load_tokenizer()
+        #except:
         self.tokenizer = Tokenizer(num_words=self.vocab_size)
         
-    def get_data(self, state, ):
+    def get_data(self, state):
         ## if we have generated actions before for state, load them, otherwise generate actions
         if (state in list(self.state_data['State'])):
             state_vector = list(self.state_data[self.state_data['State'] == state]['StateVector'])[0][0]
+            try:
+                nouns = list(self.state_data[self.state_data['State'] == state]['Nouns'])[0][0]
+            except:
+                None
             try:
                 actionsVectors = []
                 actions = []
@@ -421,10 +449,15 @@ class text_game:
                     actionsVectors.append(data[1])
                 probs = np.array(probs)
         else: 
-    
             state_vector = self.vectorize_text(state,self.tokenizer)
             ## get nouns from state
             nouns = self.get_nouns(state)
+            ## test nouns for validity
+            self.test_nouns(nouns)
+            ## remove invalid nouns
+            for noun in nouns:
+                if noun in self.invalid_nouns:
+                    nouns.remove(noun)
             # build action space and probabilities 
             current_action_space = self.generate_action_tuples(nouns)
             action_space = set()
@@ -445,6 +478,7 @@ class text_game:
             self.state_data.loc[row, 'State'] = state
             self.state_data.loc[row, 'StateVector'] = [state_vector]
             self.state_data.loc[row, 'ActionData'] = [action_dict]
+            self.state_data.loc[row, 'Nouns'] = [nouns]
         return probs, actions, state_vector, actionsVectors, action_dict
     
     def perform_selected_action(self, action):
@@ -452,8 +486,38 @@ class text_game:
         response,current_score,moves = self.readLine()
         response = self.preprocess(response)
         return response, current_score, moves
-
-    def run_game(self, agent, num_games, num_rounds, batch_size):
+    
+    def test_nouns(self, nouns):
+        for noun in nouns:
+            if noun in self.invalid_nouns or noun in self.valid_nouns:
+                pass
+            else:
+                action = 'feel ' + noun
+                response, current_score, moves = self.perform_selected_action(action)
+                if('know the word' in response):
+                    self.invalid_nouns.append(noun)
+                else:
+                    self.valid_nouns.append(noun)
+                    
+    def detect_invalid_action(self, state, action, reward, action_dict, invalid_noun):
+        ## remember already tried actions that don't change current game state
+        invalid_action = ''
+        if (reward==-1):
+            invalid_action = action
+        ## check if we have an invalid noun or action and remove them from the action dictionary
+        if invalid_noun:
+            for act, data in action_dict.items():
+                if invalid_noun in act:
+                    del action_dict[invalid_noun]
+            self.state_data.loc[self.state_data['State'] == state, 'ActionData'] = [action_dict]
+        if invalid_action and invalid_action in action_dict:
+            del action_dict[invalid_action]
+            ## update state data 
+            self.state_data.loc[self.state_data['State'] == state, 'ActionData'] = [action_dict]
+        return action_dict
+                      
+                    
+    def run_game(self, agent, num_games, num_rounds, batch_size, training):
         ## set global batch size
         self.batch_size = batch_size
         
@@ -482,9 +546,13 @@ class text_game:
                         old_inventory = inventory
                         
                     ## sometimes reading of lines gets backed up, if this happens reset and re-check state
-                    if len(state) > self.state_limit:
-                        print('encountered line read bug')
-                        state, old_surroundings, old_inventory, _, _, = self.get_state()
+                    invalid_line = True
+                    while invalid_line:
+                        invalid_line = False
+                        if len(state) > self.state_limit or len(state)<5:
+                            print('encountered line read bug')
+                            state, old_surroundings, old_inventory, _, _, = self.get_state()
+                            invalid_line = True
                         
                     ## get data for current state
                     probs, actions, state_vector, actionsVectors, action_dict = self.get_data(state)
@@ -496,16 +564,15 @@ class text_game:
                         action = self.select_one(actions, probs_norm)       
                     else: ## choose predicted max Q value action
                         print('predicted choice:')
-                        action = agent.predict_actions(state_vector, action_dict)
+                        action = agent.predict_actions(state, state_vector, action_dict)
 
                     print('-- ' + action + ' --')
     
                     ## perform selected action
                     response, current_score, moves = self.perform_selected_action(action)
                     
-                    ## check for invalid nouns
                     invalid_noun = self.detect_invalid_nouns(response)
-
+                    
                     ## vectorize selected action
                     action_vector = self.vectorize_text(action,self.tokenizer)
     
@@ -519,33 +586,26 @@ class text_game:
                     self.game_score = current_score
                     reward, reward_msg = self.calculate_reward(inventory, old_inventory, i, state, new_state, round_score)
     
-                    ## remember round data
-                    agent.remember(state_vector, action_vector, reward, new_state_vector, False)
-                    
                     ## update story dataframe
                     self.score += reward
                     total_round_number = i + game_number*num_rounds
                     self.story.loc[total_round_number] = [state, old_inventory, action, response, reward, 
                                   reward_msg, self.score, str(i), total_round_number]
                     
-                    ## remember already tried actions that don't change current game state
-                    invalid_action = ''
-                    if (reward==-1):
-                        invalid_action = action
+                    ## check if action changed game state
+                    action_dict = self.detect_invalid_action(state, action, reward, action_dict, invalid_noun)
                     
-                    ## check if we have an invalid noun or action and remove them from the action dictionary
-                    if (invalid_noun or invalid_action):
-                        if invalid_noun:
-                            for act in list(action_dict.keys()):
-                                    if invalid_noun in act:
-                                        del action_dict[act]
-                        if invalid_action and invalid_action in action_dict:
-                            del action_dict[invalid_action]
-                        ## update state data 
-                        self.state_data.loc[self.state_data['State'] == state, 'ActionData'] = [action_dict]
-                        
+                    ## get new state data
+                    new_probs, new_actions, new_state_vector, new_actionsVectors, new_action_dict = self.get_data(new_state)
+                    
+                    ## remember round data
+                    if training:
+                        agent.remember(state_vector, state, action_vector, reward, new_state_vector,
+                                       new_state, action_dict, False)
+                    
+                    
                     ## if enough experiences in batch, replay 
-                    if (i+1)%self.batch_size == 0 and i>0:  
+                    if training and (i+1)%self.batch_size == 0 and i>0:  
                         print('Training on mini batch')
                         self.agent.replay(self.batch_size)
                         sleep(self.sleep_time)
