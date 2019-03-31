@@ -224,7 +224,7 @@ w2v.wv.similarity('open', 'table')
 
 
 
-    0.12257112
+    0.23710659
 
 
 
@@ -236,7 +236,7 @@ w2v.wv.similarity('open', 'chest')
 
 
 
-    0.9786652
+    0.98167264
 
 
 
@@ -248,7 +248,7 @@ w2v.wv.similarity(word_tokenize('unlock tree with'), 'key').mean()
 
 
 
-    0.39092997
+    0.38991055
 
 
 
@@ -260,8 +260,56 @@ w2v.wv.similarity(word_tokenize('unlock door with'), 'key').mean()
 
 
 
-    0.49473485
+    0.4937261
 
+
+
+To give an idea of the size and complexity of this corpus of walkthroughs and tuturials, a TSNE plot can be seen below.
+
+
+```python
+from sklearn.manifold import TSNE
+def tsne_plot(model):
+    "Creates and TSNE model and plots it"
+    labels = []
+    tokens = []
+
+    for word in model.wv.vocab:
+        tokens.append(model[word])
+        labels.append(word)
+    
+    tsne_model = TSNE(perplexity=40, n_components=2, init='pca', n_iter=2500, random_state=23)
+    new_values = tsne_model.fit_transform(tokens)
+
+    x = []
+    y = []
+    for value in new_values:
+        x.append(value[0])
+        y.append(value[1])
+        
+    plt.figure(figsize=(16, 16)) 
+    for i in range(len(x)):
+        plt.scatter(x[i],y[i])
+        plt.annotate(labels[i],
+                     xy=(x[i], y[i]),
+                     xytext=(5, 2),
+                     textcoords='offset points',
+                     ha='right',
+                     va='bottom')
+    plt.show()
+```
+
+
+```python
+tsne_plot(w2v)
+```
+
+    C:\Users\sparr\Anaconda3\lib\site-packages\ipykernel_launcher.py:8: DeprecationWarning: Call to deprecated `__getitem__` (Method will be removed in 4.0.0, use self.wv.__getitem__() instead).
+      
+    
+
+
+![png](TechnicalWriteUp_files/TechnicalWriteUp_17_1.png)
 
 
 ### Game emulation
@@ -471,7 +519,7 @@ plt.show()
 ```
 
 
-![png](readme_files/readme_23_0.png)
+![png](TechnicalWriteUp_files/TechnicalWriteUp_26_0.png)
 
 
 
@@ -480,6 +528,102 @@ plt.show()
 
 As you can see, the AI greatly outperformed the random agent. However, even after over 200 games of training, the AI still fails to average over 0 total points in each game.
 It is important to keep in mind though, that the score referred to in this chart is not the in-game score but instead the rewarded score.
+
+
+```python
+stories.columns
+```
+
+
+
+
+    Index(['Unnamed: 0', 'Unnamed: 0.1', 'Surroundings', 'Inventory', 'Action',
+           'Response', 'Reward', 'Reward_Type', 'Score', 'Moves', 'Total_Moves'],
+          dtype='object')
+
+
+
+
+```python
+stories = pd.read_csv('ddqn_stories.csv')
+
+stories['Score'][stories['Score']>0].plot(c='black')
+plt.xlabel('Turn')
+plt.ylabel('Score')
+plt.title('Per Turn Scores')
+plt.figure(figsize=(20,20))
+plt.show()
+```
+
+
+![png](TechnicalWriteUp_files/TechnicalWriteUp_29_0.png)
+
+
+
+    <Figure size 1440x1440 with 0 Axes>
+
+
+The above shows the score at the end of each turn when the score was above 0. With additional training, more scores over 0 occur.
+
+
+```python
+stories = pd.read_csv('ddqn_stories.csv')
+
+stories['Score'][stories['Score']<0].plot(c='red')
+plt.xlabel('Turn')
+plt.ylabel('Score')
+plt.title('Per Turn Scores')
+plt.figure(figsize=(20,20))
+plt.show()
+```
+
+
+![png](TechnicalWriteUp_files/TechnicalWriteUp_31_0.png)
+
+
+
+    <Figure size 1440x1440 with 0 Axes>
+
+
+The above shows the score at the end of each turn when the score was below 0. With additional training, less scores below 0 occur.
+
+The above is a graph of the reward for each turn taken by the AI. 
+
+
+```python
+stories.Action.value_counts()[0:10].plot(kind='bar')
+plt.xlabel('Action')
+plt.ylabel('Number of occurences')
+plt.title('Top 10 Actions Taken')
+plt.figure(figsize=(20,20))
+plt.show()
+```
+
+
+![png](TechnicalWriteUp_files/TechnicalWriteUp_34_0.png)
+
+
+
+    <Figure size 1440x1440 with 0 Axes>
+
+
+
+```python
+stories.columns
+```
+
+
+
+
+    Index(['Unnamed: 0', 'Unnamed: 0.1', 'Surroundings', 'Inventory', 'Action',
+           'Response', 'Reward', 'Reward_Type', 'Score', 'Moves', 'Total_Moves'],
+          dtype='object')
+
+
+
+Above shows the top 10 most common actions taken. Nearly all of them are directional commands which is not surprising as moving around in the game is vital to scoring points. The only command in the top 10 which is not a directional command is the command 'leave nest'. This is equivalent to dropping the 'nest' which is a synonym for the 'egg' in the game. Dropping the egg or nest early on is actually an important step in scoring points for the item later on in the game.
+
+
 
 ## Results
 
