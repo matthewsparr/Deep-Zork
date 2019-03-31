@@ -23,6 +23,7 @@ import numpy as np
 import pandas as pd
 from time import sleep
 import traceback
+import random
 
 
 class text_game_random:
@@ -44,6 +45,9 @@ class text_game_random:
         self.nlp = spacy.load('en_core_web_sm')
 
         self.sleep_time = 0.01
+        
+        self.state_limit = 1000
+        self.unique_inventory_changes = set()
 
         self.score = 0
         self.game_score = 0
@@ -99,12 +103,14 @@ class text_game_random:
         self.p.kill()
         
     def restart_game(self):
+      
         self.perform_action('restart')
         self.readLine()
         self.perform_action('y')
         self.readLine()
         self.score = 0
         self.unique_state = set()
+        self.unique_inventory_changes = set()
         self.game_score = 0
         
     # read line without blocking
@@ -185,9 +191,13 @@ class text_game_random:
                         possible_actions.append(action_to_add)
         return possible_actions
     
-    def select_one(self, action_space, similarities):
-        random_index = choice(len(action_space))
-        return action_space[random_index]
+    def select_one(self, actions):
+        try:
+            random_index = random.randint(0,len(actions))
+            action =  actions[random_index]
+        except: 
+            action = actions[0]
+        return action
     
     def add_to_action_space(self, action_space, actions):
         for action in actions:
@@ -259,7 +269,7 @@ class text_game_random:
     def get_data(self, state):
         ## if we have generated actions before for state, load them, otherwise generate actions
         if (state in list(self.state_data_random['State'])):
-            actions = list(self.state_data_random[self.state_data['State'] == state]['Actions'])[0]
+            actions = list(self.state_data_random[self.state_data_random['State'] == state]['Actions'])[0][0]
         else: 
             ## get nouns from state
             nouns = self.get_nouns(state)
@@ -284,7 +294,7 @@ class text_game_random:
         response = self.preprocess(response)
         return response, current_score, moves
 
-    def run_game(self, agent, num_games, num_rounds):
+    def run_game(self, num_games, num_rounds):
         
         ## initialize progress bar
         pbar = ProgressBar(maxval=num_rounds*num_games)
@@ -323,8 +333,6 @@ class text_game_random:
                         
                     ## get data for current state
                     actions = self.get_data(state)
-                    
-
                     action = self.select_one(actions)       
                     print('-- ' + action + ' --')
     
@@ -357,8 +365,8 @@ class text_game_random:
                 self.restart_game()
                 #print(e.with_traceback())
             pbar.finish()
-            self.stories.append(self.story)
-        self.state_data.to_pickle('state_data_random.pickle')
+            self.stories_random.append(self.story_random)
+        self.state_data_random.to_pickle('state_data_random.pickle')
         self.kill_game()
         return True
 

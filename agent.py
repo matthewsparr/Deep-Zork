@@ -20,7 +20,7 @@ class DQNAgent:
         self.gamma = 0.75    # discount rate
         self.epsilon = 1.0  # exploration rate
         self.epsilon_min = 0.01
-        self.epsilon_decay = 0.9998
+        self.epsilon_decay = 0.999
         self.learning_rate = 0.1
         self.vocab_size = 1200
         self.state_q_values = dict()
