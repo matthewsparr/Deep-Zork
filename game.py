@@ -51,7 +51,7 @@ class text_game:
         self.vocab_size = 1200
         self.state_limit = 1000
         
-        self.sleep_time = 0.05
+        self.sleep_time = 0.01
         
         self.random_action_weight = 6
         self.random_action_basic_prob = 0.4
@@ -59,10 +59,10 @@ class text_game:
         
         self.score = 0
         self.game_score = 0
-        self.game_score_weight = 10
+        self.game_score_weight = 1
         self.negative_per_turn_reward = 1
-        self.inventory_reward_value = 50
-        self.new_area_reward_value = 20
+        self.inventory_reward_value = 3
+        self.new_area_reward_value = 2
         self.moving_around_reward_value = 0.5
         self.inventory_not_new_reward_value = 0.5
                 
@@ -124,6 +124,8 @@ class text_game:
     def kill_game(self):
         self.save_invalid_nouns()
         self.save_valid_nouns()
+        self.save_tokenizer()
+        self.agent.save_model_weights()
         self.p.terminate()
         self.p.kill()
         
@@ -167,7 +169,6 @@ class text_game:
         self.perform_action('look')
         surroundings,score,moves = self.readLine()
         surroundings = self.preprocess(surroundings)
-        print(surroundings)
         ## check inventory
         self.perform_action('inventory')
         inventory,score,moves = self.readLine()
@@ -319,12 +320,11 @@ class text_game:
                 print('Scored ' + str(round_score) + ' points in game.')
                 reward_msg += ' game score: ' + str(round_score) + ' '
         ## add small negative reward for each move
-        
         reward = reward - self.negative_per_turn_reward
         
         ## add reward for picking up / using items
         if(moves_count != 0):
-            if  inventory.strip().lower() not in old_inventory.strip().lower(): ## inventory changed, ignoring chirping bird line
+            if inventory.strip().lower() not in old_inventory.strip().lower(): ## inventory changed, ignoring chirping bird line
                 ## keep track of unique inventory changes to prevent picking up and dropping items constantly
                 if (old_inventory + ' - ' + inventory) not in self.unique_inventory_changes:
                     self.unique_inventory_changes.add(old_inventory + ' - ' + inventory)
@@ -333,6 +333,7 @@ class text_game:
                     reward_msg += ' inventory score (' + old_inventory + " --- " + inventory + ')'
                 else:
                     reward = reward + self.inventory_not_new_reward_value
+                    
         ## add reward for discovering new areas
         if new_state.strip() not in self.unique_state:  ## new location
             reward = reward + self.new_area_reward_value
@@ -359,18 +360,16 @@ class text_game:
         ## save invalid nouns to pickled list
         try:
             with open('tokenizer.pickle', 'wb') as fp:
-                pickle.dump(self.tokenizer, fp)
+                pickle.dump(self.tokenizer, fp, protocol=pickle.HIGHEST_PROTOCOL)
         except:
             pass
     
     def load_tokenizer(self):
         ## load previously found invalid nouns from pickled list
-        try:
-            with open ('tokenizer.pickle', 'rb') as fp:
-                n = pickle.load(fp)
-                self.tokenizer = n
-        except:
-            pass        
+        with open('tokenizer.pickle', 'rb') as fp:
+                self.tokenizer = pickle.load(fp)
+                print('*** loaded tokenizer ***')
+       
             
     def save_invalid_nouns(self):
         ## save invalid nouns to pickled list
@@ -415,10 +414,10 @@ class text_game:
         return w2v
         
     def init_tokenizer(self):
-       # try: 
-        #    self.load_tokenizer()
-        #except:
-        self.tokenizer = Tokenizer(num_words=self.vocab_size)
+        try: 
+            self.load_tokenizer()
+        except:
+            self.tokenizer = Tokenizer(num_words=self.vocab_size)
         
     def get_data(self, state):
         ## if we have generated actions before for state, load them, otherwise generate actions
@@ -549,10 +548,12 @@ class text_game:
                     invalid_line = True
                     while invalid_line:
                         invalid_line = False
-                        if len(state) > self.state_limit or len(state)<5:
+                        if len(state) > self.state_limit or len(state)<5 or 'score' in state:
                             print('encountered line read bug')
                             state, old_surroundings, old_inventory, _, _, = self.get_state()
                             invalid_line = True
+                    print(state)
+
                         
                     ## get data for current state
                     probs, actions, state_vector, actionsVectors, action_dict = self.get_data(state)
@@ -603,13 +604,12 @@ class text_game:
                         agent.remember(state_vector, state, action_vector, reward, new_state_vector,
                                        new_state, action_dict, False)
                     
-                    
                     ## if enough experiences in batch, replay 
                     if training and (i+1)%self.batch_size == 0 and i>0:  
                         print('Training on mini batch')
                         self.agent.replay(self.batch_size)
                         sleep(self.sleep_time)
-                        
+                              
                     ## update progress bar
                     pbar.update(i + (game_number)*num_rounds) 
                     

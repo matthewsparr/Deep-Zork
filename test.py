@@ -16,26 +16,48 @@ a = game.agent
 a.epsilon_decay = 1
 a.epsilon = 1
 
-pr = cProfile.Profile()
-pr.enable()
-game.run_game(agent=a, num_games=1000, num_rounds=250, batch_size=0, training=False)
+#pr = cProfile.Profile()
+#pr.enable()
+#game.run_game(agent=a, num_games=128, num_rounds=256, batch_size=0, training=False)
 
-story1 = game.story.copy()
-game_scores1 = game.end_game_scores()
+
+#story1 = game.story.copy()
+#game_scores1 = game.end_game_scores.copy()
 
 a.epsilon_decay = 0.9995
 a.epsilon = 1
 
-game.run_game(agent=a, num_games=1000, num_rounds=64, batch_size=16, training=True)
+game.run_game(agent=a, num_games=5, num_rounds=256, batch_size=64, training=True)
 
-story2 = game.story.copy()
-game_scores2 = game.end_game_scores()
+story3 = game.story.copy()
+game_scores3 = game.end_game_scores.copy()
 
-state_data = pd.read_pickle('state_data.pickle')
 
-story1.plot.line(x='Total_Moves', y='Score')
-game_scores1.plot.line(x='Game Number', y='Score')
+a.transfer_learning()
 
-pr.disable()
-ps = pstats.Stats(pr).sort_stats('time')
-ps.print_stats(30)
+game.run_game(agent=a, num_games=5, num_rounds=256, batch_size=64, training=True)
+
+story4 = game.story.copy()
+game_scores4 = game.end_game_scores.copy()
+
+a.transfer_learning()
+
+game.run_game(agent=a, num_games=5, num_rounds=256, batch_size=64, training=True)
+
+story5 = game.story.copy()
+game_scores5 = game.end_game_scores.copy()
+
+a.transfer_learning()
+
+game.run_game(agent=a, num_games=5, num_rounds=256, batch_size=64, training=True)
+
+story6 = game.story.copy()
+game_scores6 = game.end_game_scores.copy()
+
+#state_data = pd.read_pickle('state_data.pickle')
+
+#story1.plot.line(x='Total_Moves', y='Score')
+#game_scores1.plot.line(x='Game Number', y='Score')
+#story2.plot.line(x='Total_Moves', y='Score')
+#game_scores2.plot.line(x='Game Number', y='Score')
+
