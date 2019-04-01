@@ -309,7 +309,7 @@ tsne_plot(w2v)
     
 
 
-![png](TechnicalWriteUp_files/TechnicalWriteUp_17_1.png)
+![png](technicalwriteup_files/technicalwriteup_17_1.png)
 
 
 ### Game emulation
@@ -519,7 +519,7 @@ plt.show()
 ```
 
 
-![png](TechnicalWriteUp_files/TechnicalWriteUp_26_0.png)
+![png](technicalwriteup_files/technicalwriteup_26_0.png)
 
 
 
@@ -556,7 +556,7 @@ plt.show()
 ```
 
 
-![png](TechnicalWriteUp_files/TechnicalWriteUp_29_0.png)
+![png](technicalwriteup_files/technicalwriteup_29_0.png)
 
 
 
@@ -578,7 +578,7 @@ plt.show()
 ```
 
 
-![png](TechnicalWriteUp_files/TechnicalWriteUp_31_0.png)
+![png](technicalwriteup_files/technicalwriteup_31_0.png)
 
 
 
@@ -600,7 +600,7 @@ plt.show()
 ```
 
 
-![png](TechnicalWriteUp_files/TechnicalWriteUp_34_0.png)
+![png](technicalwriteup_files/technicalwriteup_34_0.png)
 
 
 
@@ -670,3 +670,16 @@ An ensemble of networks could also be tested and might provide a more robust sol
 
 Zork was chosen because it is one of the most well-known text-based games. However, it may not be the most friendly to reinforcement learning compared to other games.
 Finding more, simpler interactive fiction games with smaller game maps could be tested. Creating an agent that can successfully play a simpler game could then be translated to more complex games.
+
+## References
+***
+
+Ji He, Jianshu Chen, Xiaodong He, Jianfeng Gao, Lihong Li, Li Deng, and MariOstendorf.  Deep Reinforcement Learning with an Unbounded Action Space.CoRR, 2015. URL: http://arxiv.org/abs/1511.04636.
+
+Karthik Narasimhan, Tejas D. Kulkarni, and Regina Barzilay.  Language Under-standing for Text-based Games Using Deep Reinforcement Learning, 2015. URL: http://arxiv.org/abs/1506.08941.
+
+Zelinka Mikulaˇs. “Using Reinforcement Learning to Learnhow to Play Text-Based Games.” Charles University, 2017. URL: https://arxiv.org/pdf/1801.01999.
+
+Matan Haroush, Tom Zahavy, Daniel J. Mankowitz, Shie Mannor. Learning How Not to Act in Text-based Games, 2018. URL: https://openreview.net/forum?id=B1-tVX1Pz.
+
+Hado van Hasselt, Arthur Guez, David Silver. Deep Reinforcement Learning with Double Q-learning, 2015. URL: https://arxiv.org/abs/1509.06461.
